@@ -65,9 +65,11 @@ every page.
 ```
 index.html          landing page with a live hero calculator
 calculator.html     the four-tool app
+reference.html      computed charging/range/cost tables (SEO + citation asset)
 use-cases.html      eight worked examples, each deep-linking into the calculator
 about.html          method, accuracy limits, privacy, FAQ
 404.html
+llms.txt            site summary and key figures for AI answer engines
 sw.js               service worker (offline)
 manifest.json       PWA manifest
 assets/css/style.css
@@ -77,7 +79,12 @@ assets/js/calculator.js  engine (exported as window.WattrixEngine) + calculator 
 assets/js/tour.js        guided tour
 assets/js/home.js        hero mini-calculator + marquee
 assets/icons/            PWA icons
+assets/og/               Open Graph share images (1200x630)
 ```
+
+Every figure on `reference.html` is generated from the calculation engine
+itself, so the published tables can never drift from what the calculator
+returns. Regenerate them if the engine changes.
 
 `WattrixEngine` is pure and side-effect free - `session()`, `plan()`,
 `tripEnergy()`, `conditionFactor()` and the unit conversions can be tested or

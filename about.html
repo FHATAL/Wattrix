@@ -3,21 +3,31 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>About Wattrix - how the EV maths works, and our privacy stance</title>
+  <title>How the EV maths works - Wattrix method & privacy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050507" />
   <meta name="description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
   <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://wattrix.app/about.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="FHATAL" />
+  <meta name="publisher" content="FHATAL" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wattrix" />
-  <meta property="og:title" content="About Wattrix - how the EV maths works, and our privacy stance" />
+  <meta property="og:locale" content="en" />
+  <meta property="og:title" content="How the EV maths works - Wattrix method & privacy" />
   <meta property="og:description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
   <meta property="og:url" content="https://wattrix.app/about.html" />
+  <meta property="og:image" content="https://wattrix.app/assets/og/og-about.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="How Wattrix models EV consumption and charging" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About Wattrix - how the EV maths works, and our privacy stance" />
+  <meta name="twitter:title" content="How the EV maths works - Wattrix method & privacy" />
   <meta name="twitter:description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
+  <meta name="twitter:image" content="https://wattrix.app/assets/og/og-about.png" />
+  <meta name="twitter:image:alt" content="How Wattrix models EV consumption and charging" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,16 +40,156 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Do you track me?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you say yes. Analytics is off until you accept it in the cookie banner, and rejecting means the Google Analytics script is never loaded at all - not loaded-but-muted. You can change your mind from the footer on any page, and withdrawing consent clears the analytics cookies straight away." } },
-      { "@type": "Question", "name": "What is stored on my device?", "acceptedAnswer": { "@type": "Answer", "text": "Three things, all in local storage: your calculator inputs so the page comes back the way you left it, any scenarios you save by name, and your cookie choice. Clearing your browser data for this site removes all of it. There is no server copy because there is no server." } },
-      { "@type": "Question", "name": "Does it work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A service worker caches the pages and scripts on your first visit, so Wattrix opens and calculates with no connection. That is deliberate: underground car parks and rural charging stops are exactly where you want it." } },
-      { "@type": "Question", "name": "Why does my car charge slower than this says?", "acceptedAnswer": { "@type": "Answer", "text": "Cold cells, a shared charging cabinet, a high starting state of charge, or a car that is throttling to protect the pack. The taper curve here is a good generic model, not your specific car on that specific day. Treat it as a planning figure." } },
-      { "@type": "Question", "name": "Where do the car presets come from?", "acceptedAnswer": { "@type": "Answer", "text": "Published usable-capacity and peak-power figures, with consumption set to a realistic mixed-driving average rather than the optimistic official number. They are a starting point - your own long-term average is always more accurate, so override it." } },
-      { "@type": "Question", "name": "Can I use miles?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Distance switches between km and mi, and consumption can be entered as Wh/km, Wh/mi, kWh/100km or mi/kWh. Currency has a few common symbols and you can type any price." } },
-      { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with no account and no paywall. It is built and maintained by FHATAL as a genuinely useful tool." } },
-      { "@type": "Question", "name": "How do I report a wrong number?", "acceptedAnswer": { "@type": "Answer", "text": "Email support@fhatal.com with the car, the inputs and what you saw in reality. Corrections to the preset data are welcome and easy to apply." } }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://wattrix.app/#org",
+        "name": "FHATAL",
+        "url": "https://fhatal.com",
+        "description": "Finnish software company building web software, SaaS and digital products.",
+        "email": "support@fhatal.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wattrix.app/#site",
+        "name": "Wattrix",
+        "alternateName": "Wattrix EV calculator",
+        "url": "https://wattrix.app/",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://wattrix.app/#app",
+        "name": "Wattrix",
+        "url": "https://wattrix.app/",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "EV charging and trip calculator",
+        "operatingSystem": "Any browser",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Calculates EV charging time, trip energy, charging stops, real-world range and running costs. Runs entirely in the browser with no account and no server.",
+        "featureList": [
+          "Trip planner that works out how many charging stops a journey needs",
+          "Charging session times modelled on a real DC taper curve",
+          "Real-world range adjusted for temperature, speed, load and tyres",
+          "EV versus petrol and diesel running cost comparison",
+          "48 electric car presets and 10 charge point presets",
+          "Works offline after the first visit"
+        ],
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        },
+        "creator": {
+          "@id": "https://wattrix.app/#org"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wattrix.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://wattrix.app/about.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you track me?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only if you say yes. Analytics is off until you accept it in the cookie banner, and rejecting means the Google Analytics script is never loaded at all - not loaded-but-muted. You can change your mind from the footer on any page, and withdrawing consent clears the analytics cookies straight away."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is stored on my device?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Three things, all in local storage: your calculator inputs so the page comes back the way you left it, any scenarios you save by name, and your cookie choice. Clearing your browser data for this site removes all of it. There is no server copy because there is no server."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A service worker caches the pages and scripts on your first visit, so Wattrix opens and calculates with no connection. That is deliberate: underground car parks and rural charging stops are exactly where you want it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does my car charge slower than this says?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cold cells, a shared charging cabinet, a high starting state of charge, or a car that is throttling to protect the pack. The taper curve here is a good generic model, not your specific car on that specific day. Treat it as a planning figure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where do the car presets come from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Published usable-capacity and peak-power figures, with consumption set to a realistic mixed-driving average rather than the optimistic official number. They are a starting point - your own long-term average is always more accurate, so override it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use miles?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Distance switches between km and mi, and consumption can be entered as Wh/km, Wh/mi, kWh/100km or mi/kWh. Currency has a few common symbols and you can type any price."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, with no account and no paywall. It is built and maintained by FHATAL as a genuinely useful tool."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I report a wrong number?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Email support@fhatal.com with the car, the inputs and what you saw in reality. Corrections to the preset data are welcome and easy to apply."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "headline": "How Wattrix models EV consumption, charging tapers and cost",
+        "description": "The formulas behind the calculator: the consumption multiplier for temperature, speed, load and tyres, the DC and AC charging taper curves, how charging stops are planned, and where the estimates stop being reliable.",
+        "author": {
+          "@id": "https://wattrix.app/#org"
+        },
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        },
+        "inLanguage": "en",
+        "mainEntityOfPage": "https://wattrix.app/about.html"
+      }
     ]
   }
   </script>
@@ -64,6 +214,7 @@
         <a href="index.html">Home</a>
         <a href="calculator.html">Calculator</a>
         <a href="use-cases.html">Use cases</a>
+        <a href="reference.html">Reference</a>
         <a href="about.html" class="active" aria-current="page">About</a>
       </div>
       <div class="nav-cta">
@@ -76,7 +227,7 @@
     <section class="hero compact">
       <div class="container narrow">
         <span class="badge">About</span>
-        <h1>Wattrix</h1>
+        <h1>How Wattrix works</h1>
         <p class="lede">A calculator for the four questions every EV driver keeps asking, built so that none of the answers require an account, a connection, or trusting anyone with your journeys.</p>
       </div>
     </section>
@@ -171,6 +322,7 @@
         <div class="foot-col">
           <h4>Learn</h4>
           <a href="use-cases.html">Use cases</a>
+          <a href="reference.html">Charging time tables</a>
           <a href="about.html#how">How the maths works</a>
           <a href="about.html#accuracy">Accuracy and limits</a>
           <a href="calculator.html?tour=1">Guided tour</a>

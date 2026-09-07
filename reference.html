@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>EV charging time, range & cost tables - Wattrix reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050507" />
+  <meta name="description" content="How long an EV takes to charge from 10 to 80% by battery size and charger power, range against temperature, cost per 100 km, the charging taper curve, and specs for 48 models." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://wattrix.app/reference.html" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="FHATAL" />
+  <meta name="publisher" content="FHATAL" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wattrix" />
+  <meta property="og:locale" content="en" />
+  <meta property="og:title" content="EV charging time, range & cost tables - Wattrix reference" />
+  <meta property="og:description" content="How long an EV takes to charge from 10 to 80% by battery size and charger power, range against temperature, cost per 100 km, the charging taper curve, and specs for 48 models." />
+  <meta property="og:url" content="https://wattrix.app/reference.html" />
+  <meta property="og:image" content="https://wattrix.app/assets/og/og-reference.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="EV charging time, range and cost reference tables" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EV charging time, range & cost tables - Wattrix reference" />
+  <meta name="twitter:description" content="How long an EV takes to charge from 10 to 80% by battery size and charger power, range against temperature, cost per 100 km, the charging taper curve, and specs for 48 models." />
+  <meta name="twitter:image" content="https://wattrix.app/assets/og/og-reference.png" />
+  <meta name="twitter:image:alt" content="EV charging time, range and cost reference tables" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237559ff'/%3E%3Cstop offset='1' stop-color='%2338fbd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='24,4 44,28 32,28 48,60 20,32 34,32' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://wattrix.app/#org",
+        "name": "FHATAL",
+        "url": "https://fhatal.com",
+        "description": "Finnish software company building web software, SaaS and digital products.",
+        "email": "support@fhatal.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wattrix.app/#site",
+        "name": "Wattrix",
+        "alternateName": "Wattrix EV calculator",
+        "url": "https://wattrix.app/",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wattrix.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Reference",
+            "item": "https://wattrix.app/reference.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How long does it take to charge an electric car from 10 to 80%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On a 150 kW DC rapid charger, a 75 kWh battery takes about 26 minutes to go from 10% to 80%. A 50 kWh pack takes around 17 minutes and a 100 kWh pack about 34 minutes. Doubling the charger power does not halve the time, because the car tapers the power down as the battery fills."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does charging slow down after 80%?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The battery management system reduces current as cells approach full to protect them and to keep them balanced. On DC, power at 90% state of charge is typically around a quarter of the peak, and at 95% roughly a fifth. This is why charging to 80% twice is usually faster on a long trip than charging to 100% once."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much range does an EV lose in cold weather?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At -10 °C expect roughly 33% higher consumption than at 20 °C, and at -20 °C roughly 44% higher. A 75 kWh car using 175 Wh/km covers about 429 km at 20 °C but only about 322 km at -10 °C. Cold costs range twice over: the chemistry delivers less and the cabin has to be heated from the same battery."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to charge an EV on a home wallbox?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On a 7.4 kW single-phase wallbox, charging a 75 kWh battery from 20% to 80% takes about 6 hours. On an 11 kW three-phase wallbox the same charge takes about 4 hours. On a standard household socket at 2.3 kW it takes around 19.5 hours, which is why a wallbox matters for larger packs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does it cost to charge an electric car per 100 km?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "At 175 Wh/km, electricity at 0.20 per kWh costs 3.50 per 100 km, and at 0.50 per kWh it costs 8.75 per 100 km. Multiply your consumption in Wh/km by the price per kWh and divide by 10 to get the cost per 100 km in your own currency."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does a 350 kW charger charge my car faster than a 150 kW one?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Only if your car can accept more than 150 kW. Charging power is the lower of what the charge point supplies and what the car will take at that state of charge. A car peaking at 100 kW gains nothing from a 350 kW post, and above 80% almost every car is slow regardless of what it is plugged into."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much energy is lost when charging an EV?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Roughly 5% on DC rapid charging and around 11% on AC charging. Those losses happen between the meter and the battery, so you pay for them but never see them in the pack. On AC that means about 11% more on your bill than the energy the battery actually gained."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Dataset",
+        "@id": "https://wattrix.app/reference.html#dataset",
+        "name": "EV charging times, range and running cost reference tables",
+        "description": "Computed charging times for DC rapid and AC charging across battery sizes and charger powers, range against outside temperature, running cost per 100 km, consumption multipliers for temperature, speed, load and tyres, the charging taper curve, and specifications for 48 electric car models.",
+        "url": "https://wattrix.app/reference.html",
+        "license": "https://wattrix.app/reference.html",
+        "creator": {
+          "@id": "https://wattrix.app/#org"
+        },
+        "isAccessibleForFree": true,
+        "keywords": [
+          "EV charging time",
+          "electric car range",
+          "charging curve",
+          "kWh per 100 km",
+          "EV running cost",
+          "cold weather range"
+        ],
+        "variableMeasured": [
+          {
+            "@type": "PropertyValue",
+            "name": "DC charging time 10-80%",
+            "unitText": "minutes"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "AC charging time 20-80%",
+            "unitText": "hours"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Range",
+            "unitText": "km"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Consumption",
+            "unitText": "Wh/km"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Running cost per 100 km"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <div class="bg-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div id="loader" aria-hidden="true">
+    <div class="bolt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg></div>
+    <div class="bar"><i></i></div>
+  </div>
+
+  <div class="nav-wrapper">
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="use-cases.html">Use cases</a>
+        <a href="reference.html" class="active" aria-current="page">Reference</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="nav-cta">
+        <a href="calculator.html" class="btn accent">Open calculator</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+    <section class="hero compact">
+      <div class="container narrow">
+        <span class="badge">Reference tables</span>
+        <h1>EV charging times, range and cost</h1>
+        <p class="lede">Worked numbers for the questions people actually search for. Every figure here is produced by the same engine that powers the calculator, so the tables and the tool always agree.</p>
+        <div class="hero-actions justify-center">
+          <a href="calculator.html" class="btn accent lg">Run your own numbers</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow prose">
+
+        <h2 id="dc">DC rapid charging: 10% to 80%</h2>
+        <p><strong>A 75 kWh battery takes about 26 minutes to charge from 10% to 80% on a 150 kW rapid charger.</strong> The table assumes a car whose own peak DC power matches the charge point rating, an ambient temperature of 20 °C, and a taper measured against that peak rather than a flat rate. If your car's peak differs from the post you are plugged into, the next table shows what that does.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Usable battery</th><th scope="col">50 kW</th><th scope="col">100 kW</th><th scope="col">150 kW</th><th scope="col">250 kW</th><th scope="col">350 kW</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">50 kWh</th><td class="num">51 min</td><td class="num">26 min</td><td class="num">17 min</td><td class="num">10 min</td><td class="num">7 min</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">60 kWh</th><td class="num">1h 02m</td><td class="num">31 min</td><td class="num">21 min</td><td class="num">12 min</td><td class="num">9 min</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">70 kWh</th><td class="num">1h 12m</td><td class="num">36 min</td><td class="num">24 min</td><td class="num">14 min</td><td class="num">10 min</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">75 kWh</th><td class="num">1h 17m</td><td class="num">39 min</td><td class="num">26 min</td><td class="num">15 min</td><td class="num">11 min</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">80 kWh</th><td class="num">1h 22m</td><td class="num">41 min</td><td class="num">27 min</td><td class="num">16 min</td><td class="num">12 min</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">100 kWh</th><td class="num">1h 43m</td><td class="num">51 min</td><td class="num">34 min</td><td class="num">21 min</td><td class="num">15 min</td></tr></tbody></table></div><p class="small dim mt-2">Times include the taper, which is why going from 150 kW to 350 kW saves far less than the power difference suggests. These are best-case figures for each rating: a car matched to the post, a warm pack, and the charger to itself.</p>
+
+        <h3>What one car actually gets from each charge point</h3>
+        <p>Peak power is a headline; the average across the session decides how long you wait. This is a 75 kWh car that peaks at 175 kW - representative of a current mid-size EV - plugged into each rating in turn.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Charge point</th><th scope="col">Peak reached</th><th scope="col">Average 10-80%</th><th scope="col">Share of the rating</th><th scope="col">Time</th><th scope="col">Limited by</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">50 kW</th><td class="num">50 kW</td><td class="num">50 kW</td><td class="num">100%</td><td class="num">1h 03m</td><td class="num">the charger</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">100 kW</th><td class="num">100 kW</td><td class="num">99 kW</td><td class="num">99%</td><td class="num">32 min</td><td class="num">the charger</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">150 kW</th><td class="num">150 kW</td><td class="num">134 kW</td><td class="num">89%</td><td class="num">24 min</td><td class="num">the charger</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">250 kW</th><td class="num">175 kW</td><td class="num">143 kW</td><td class="num">57%</td><td class="num">22 min</td><td class="num">the car</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">350 kW</th><td class="num">175 kW</td><td class="num">143 kW</td><td class="num">41%</td><td class="num">22 min</td><td class="num">the car</td></tr></tbody></table></div><p class="small dim mt-2">Once the charge point can supply more than the car will take, extra kW on the pillar buy you nothing: the share of the rating collapses and the time barely moves. Check your own car's peak DC figure before paying for a faster post.</p>
+
+        <h2 id="ac">AC and home charging: 20% to 80%</h2>
+        <p><strong>On an 11 kW three-phase wallbox, a 75 kWh battery takes roughly 4 hours to go from 20% to 80%.</strong> AC charging is limited by the car's onboard charger, so a 22 kW post does nothing for a car that only accepts 11 kW.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Usable battery</th><th scope="col">2.3 kW</th><th scope="col">3.7 kW</th><th scope="col">7.4 kW</th><th scope="col">11 kW</th><th scope="col">22 kW</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">50 kWh</th><td class="num">13h 03m</td><td class="num">8h 06m</td><td class="num">4h 03m</td><td class="num">2h 44m</td><td class="num">1h 22m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">60 kWh</th><td class="num">15h 39m</td><td class="num">9h 44m</td><td class="num">4h 52m</td><td class="num">3h 16m</td><td class="num">1h 38m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">70 kWh</th><td class="num">18h 16m</td><td class="num">11h 21m</td><td class="num">5h 41m</td><td class="num">3h 49m</td><td class="num">1h 55m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">75 kWh</th><td class="num">19h 34m</td><td class="num">12h 10m</td><td class="num">6h 05m</td><td class="num">4h 05m</td><td class="num">2h 03m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">80 kWh</th><td class="num">20h 52m</td><td class="num">12h 58m</td><td class="num">6h 29m</td><td class="num">4h 22m</td><td class="num">2h 11m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">100 kWh</th><td class="num">26h 05m</td><td class="num">16h 13m</td><td class="num">8h 06m</td><td class="num">5h 27m</td><td class="num">2h 44m</td></tr></tbody></table></div><p class="small dim mt-2">Assumes the onboard charger matches the supply. 2.3 kW is a standard household socket, 7.4 kW a single-phase wallbox, 11 and 22 kW three-phase.</p>
+
+        <h2 id="cold">Range against outside temperature</h2>
+        <p><strong>At -10 °C an electric car uses roughly 33% more energy than at 20 °C.</strong> Cold hits twice: the chemistry delivers less, and the cabin is heated from the same battery instead of from waste engine heat. Figures below assume 175 Wh/km rated consumption on mixed roads.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Outside temperature</th><th scope="col">Consumption</th><th scope="col">vs rated</th><th scope="col">50 kWh</th><th scope="col">60 kWh</th><th scope="col">75 kWh</th><th scope="col">90 kWh</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">-20 °C</th><td class="num">252 Wh/km</td><td class="num">+44%</td><td class="num">198 km</td><td class="num">238 km</td><td class="num">298 km</td><td class="num">357 km</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">-10 °C</th><td class="num">233 Wh/km</td><td class="num">+33%</td><td class="num">215 km</td><td class="num">258 km</td><td class="num">322 km</td><td class="num">387 km</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">0 °C</th><td class="num">214 Wh/km</td><td class="num">+22%</td><td class="num">234 km</td><td class="num">281 km</td><td class="num">351 km</td><td class="num">422 km</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">10 °C</th><td class="num">194 Wh/km</td><td class="num">+11%</td><td class="num">257 km</td><td class="num">309 km</td><td class="num">386 km</td><td class="num">463 km</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">20 °C</th><td class="num">175 Wh/km</td><td class="num">+0%</td><td class="num">286 km</td><td class="num">343 km</td><td class="num">429 km</td><td class="num">514 km</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">30 °C</th><td class="num">178 Wh/km</td><td class="num">+2%</td><td class="num">281 km</td><td class="num">337 km</td><td class="num">422 km</td><td class="num">506 km</td></tr></tbody></table></div><p class="small dim mt-2">Full pack to empty, so subtract whatever reserve you keep. Winter tyres add roughly a further 5%.</p>
+
+        <h2 id="cost">Cost per 100 km</h2>
+        <p><strong>At 175 Wh/km and 0.20 per kWh, an EV costs 3.50 per 100 km in electricity.</strong> The rule is simple: consumption in Wh/km, multiplied by price per kWh, divided by 10.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Consumption</th><th scope="col">0.10 / kWh</th><th scope="col">0.20 / kWh</th><th scope="col">0.35 / kWh</th><th scope="col">0.50 / kWh</th><th scope="col">0.70 / kWh</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">150 Wh/km</th><td class="num">1.50</td><td class="num">3.00</td><td class="num">5.25</td><td class="num">7.50</td><td class="num">10.50</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">175 Wh/km</th><td class="num">1.75</td><td class="num">3.50</td><td class="num">6.13</td><td class="num">8.75</td><td class="num">12.25</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">200 Wh/km</th><td class="num">2.00</td><td class="num">4.00</td><td class="num">7.00</td><td class="num">10.00</td><td class="num">14.00</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">250 Wh/km</th><td class="num">2.50</td><td class="num">5.00</td><td class="num">8.75</td><td class="num">12.50</td><td class="num">17.50</td></tr></tbody></table></div><p class="small dim mt-2">Currency-neutral: the figures hold for euros, pounds or dollars. Charging losses are not included here - add roughly 5% on DC and 11% on AC to get what the meter bills you.</p>
+
+        <h2 id="multipliers">What each condition costs you</h2>
+        <p>Wattrix adjusts rated consumption by a multiplier built from four independent factors. They multiply together, which is why a cold motorway run with a roof box is so much worse than any single factor suggests.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Condition</th><th scope="col">Multiplier</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: City, mostly slow</th><td class="num">0.90×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: Mixed roads</th><td class="num">1.00×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: Country roads</th><td class="num">1.08×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: Motorway 100 km/h</th><td class="num">1.16×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: Motorway 120 km/h</th><td class="num">1.28×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Speed: Motorway 140 km/h</th><td class="num">1.45×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Load: Full car and luggage</th><td class="num">1.08×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Load: Roof box or bikes</th><td class="num">1.16×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Load: Trailer or caravan</th><td class="num">1.60×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: -20 °C</th><td class="num">1.44×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: -10 °C</th><td class="num">1.33×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: 0 °C</th><td class="num">1.22×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: 10 °C</th><td class="num">1.11×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: 20 °C</th><td class="num">1.00×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Temperature: 30 °C</th><td class="num">1.02×</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tyres: Winter tyres</th><td class="num">1.05×</td></tr></tbody></table></div><p class="small dim mt-2">A value of 1.00 is the baseline: 20 °C, mixed roads, no extra load, summer tyres.</p>
+
+        <h2 id="taper">The charging taper curve</h2>
+        <p><strong>Charging power is not constant.</strong> These are the fractions of a car's peak power available at each state of charge, which is what makes the last fifth of a battery so slow to fill.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">State of charge</th><th scope="col">DC power available</th><th scope="col">AC power available</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">0%</th><td class="num">55%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">10%</th><td class="num">100%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">20%</th><td class="num">100%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">30%</th><td class="num">100%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">40%</th><td class="num">97%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">50%</th><td class="num">89%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">60%</th><td class="num">77%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">70%</th><td class="num">62%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">80%</th><td class="num">45%</td><td class="num">100%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">90%</th><td class="num">27%</td><td class="num">94%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">95%</th><td class="num">20%</td><td class="num">80%</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">100%</th><td class="num">12%</td><td class="num">50%</td></tr></tbody></table></div><p class="small dim mt-2">Generic curve. Individual cars differ, and a cold pack is derated further, but the shape holds for every battery on the market.</p>
+
+        <h2 id="cars">Charging time and range by model</h2>
+        <p>The 48 cars built into the calculator, with the time to charge from 10% to 80% on an unrestricted rapid charger and from 20% to 80% on a 22 kW AC post. Range is a full pack at the listed consumption.</p>
+        <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Model</th><th scope="col">Usable</th><th scope="col">Consumption</th><th scope="col">Peak DC</th><th scope="col">Range</th><th scope="col">DC 10-80%</th><th scope="col">AC 20-80%</th></tr></thead><tbody><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Audi Q4 e-tron 45</th><td class="num">77 kWh</td><td class="num">185 Wh/km</td><td class="num">135 kW</td><td class="num">416 km</td><td class="num">29 min</td><td class="num">4h 12m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">BMW i4 eDrive40</th><td class="num">81.3 kWh</td><td class="num">170 Wh/km</td><td class="num">205 kW</td><td class="num">478 km</td><td class="num">20 min</td><td class="num">4h 26m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">BMW iX xDrive50</th><td class="num">105.2 kWh</td><td class="num">205 Wh/km</td><td class="num">195 kW</td><td class="num">513 km</td><td class="num">28 min</td><td class="num">5h 44m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">BMW iX1 xDrive30</th><td class="num">64.7 kWh</td><td class="num">182 Wh/km</td><td class="num">130 kW</td><td class="num">355 km</td><td class="num">26 min</td><td class="num">3h 32m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">BYD Atto 3</th><td class="num">60 kWh</td><td class="num">182 Wh/km</td><td class="num">88 kW</td><td class="num">330 km</td><td class="num">35 min</td><td class="num">3h 16m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">BYD Seal AWD</th><td class="num">82.5 kWh</td><td class="num">178 Wh/km</td><td class="num">150 kW</td><td class="num">463 km</td><td class="num">28 min</td><td class="num">4h 30m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Chevrolet Bolt EUV</th><td class="num">65 kWh</td><td class="num">165 Wh/km</td><td class="num">55 kW</td><td class="num">394 km</td><td class="num">1h 01m</td><td class="num">3h 33m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Citroen e-C3 44</th><td class="num">44 kWh</td><td class="num">158 Wh/km</td><td class="num">100 kW</td><td class="num">278 km</td><td class="num">23 min</td><td class="num">3h 34m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Cupra Born 58</th><td class="num">58 kWh</td><td class="num">168 Wh/km</td><td class="num">120 kW</td><td class="num">345 km</td><td class="num">25 min</td><td class="num">3h 10m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Dacia Spring 45</th><td class="num">26.8 kWh</td><td class="num">142 Wh/km</td><td class="num">30 kW</td><td class="num">189 km</td><td class="num">46 min</td><td class="num">2h 10m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Fiat 500e 42</th><td class="num">37.3 kWh</td><td class="num">145 Wh/km</td><td class="num">85 kW</td><td class="num">257 km</td><td class="num">23 min</td><td class="num">2h 02m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Ford F-150 Lightning ER</th><td class="num">131 kWh</td><td class="num">300 Wh/km</td><td class="num">155 kW</td><td class="num">437 km</td><td class="num">43 min</td><td class="num">4h 06m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Ford Mustang Mach-E ER</th><td class="num">88 kWh</td><td class="num">195 Wh/km</td><td class="num">150 kW</td><td class="num">451 km</td><td class="num">30 min</td><td class="num">4h 48m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Honda e:Ny1</th><td class="num">61.9 kWh</td><td class="num">185 Wh/km</td><td class="num">78 kW</td><td class="num">335 km</td><td class="num">41 min</td><td class="num">3h 23m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Hyundai Ioniq 5 77 kWh</th><td class="num">74 kWh</td><td class="num">178 Wh/km</td><td class="num">235 kW</td><td class="num">416 km</td><td class="num">16 min</td><td class="num">4h 02m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Hyundai Ioniq 6 77 kWh</th><td class="num">74 kWh</td><td class="num">152 Wh/km</td><td class="num">233 kW</td><td class="num">487 km</td><td class="num">16 min</td><td class="num">4h 02m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Hyundai Kona Electric 65</th><td class="num">65.4 kWh</td><td class="num">160 Wh/km</td><td class="num">102 kW</td><td class="num">409 km</td><td class="num">33 min</td><td class="num">3h 34m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Kia EV3 Long Range</th><td class="num">78 kWh</td><td class="num">158 Wh/km</td><td class="num">128 kW</td><td class="num">494 km</td><td class="num">31 min</td><td class="num">4h 15m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Kia EV6 Long Range</th><td class="num">74 kWh</td><td class="num">172 Wh/km</td><td class="num">240 kW</td><td class="num">430 km</td><td class="num">16 min</td><td class="num">4h 02m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Kia Niro EV</th><td class="num">64.8 kWh</td><td class="num">165 Wh/km</td><td class="num">72 kW</td><td class="num">393 km</td><td class="num">46 min</td><td class="num">3h 32m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Mercedes EQA 250</th><td class="num">66.5 kWh</td><td class="num">180 Wh/km</td><td class="num">100 kW</td><td class="num">369 km</td><td class="num">34 min</td><td class="num">3h 38m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Mercedes EQE 350+</th><td class="num">89 kWh</td><td class="num">175 Wh/km</td><td class="num">170 kW</td><td class="num">509 km</td><td class="num">27 min</td><td class="num">4h 51m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">MG ZS EV Long Range</th><td class="num">68.3 kWh</td><td class="num">178 Wh/km</td><td class="num">92 kW</td><td class="num">384 km</td><td class="num">38 min</td><td class="num">3h 44m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">MG4 Long Range 64</th><td class="num">61.7 kWh</td><td class="num">168 Wh/km</td><td class="num">135 kW</td><td class="num">367 km</td><td class="num">23 min</td><td class="num">3h 22m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Mini Cooper SE (J01)</th><td class="num">49.2 kWh</td><td class="num">155 Wh/km</td><td class="num">95 kW</td><td class="num">317 km</td><td class="num">27 min</td><td class="num">2h 41m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Nissan Ariya 87</th><td class="num">87 kWh</td><td class="num">190 Wh/km</td><td class="num">130 kW</td><td class="num">458 km</td><td class="num">34 min</td><td class="num">2h 22m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Nissan Leaf 40 kWh</th><td class="num">36 kWh</td><td class="num">168 Wh/km</td><td class="num">46 kW</td><td class="num">214 km</td><td class="num">40 min</td><td class="num">3h 16m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Opel Corsa Electric 51</th><td class="num">48.1 kWh</td><td class="num">155 Wh/km</td><td class="num">100 kW</td><td class="num">310 km</td><td class="num">25 min</td><td class="num">2h 37m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Peugeot e-208 51</th><td class="num">48.1 kWh</td><td class="num">155 Wh/km</td><td class="num">100 kW</td><td class="num">310 km</td><td class="num">25 min</td><td class="num">2h 37m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Polestar 2 Long Range</th><td class="num">79 kWh</td><td class="num">176 Wh/km</td><td class="num">205 kW</td><td class="num">449 km</td><td class="num">20 min</td><td class="num">4h 19m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Porsche Taycan 89 kWh</th><td class="num">83.7 kWh</td><td class="num">196 Wh/km</td><td class="num">270 kW</td><td class="num">427 km</td><td class="num">16 min</td><td class="num">4h 34m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Renault 5 E-Tech 52</th><td class="num">52 kWh</td><td class="num">150 Wh/km</td><td class="num">100 kW</td><td class="num">347 km</td><td class="num">27 min</td><td class="num">2h 50m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Renault Megane E-Tech 60</th><td class="num">60 kWh</td><td class="num">165 Wh/km</td><td class="num">130 kW</td><td class="num">364 km</td><td class="num">24 min</td><td class="num">1h 38m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Renault Zoe R135 52</th><td class="num">52 kWh</td><td class="num">168 Wh/km</td><td class="num">46 kW</td><td class="num">310 km</td><td class="num">58 min</td><td class="num">1h 25m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Rivian R1T Large Pack</th><td class="num">135 kWh</td><td class="num">250 Wh/km</td><td class="num">220 kW</td><td class="num">540 km</td><td class="num">32 min</td><td class="num">7h 22m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Skoda Enyaq 85</th><td class="num">77 kWh</td><td class="num">180 Wh/km</td><td class="num">135 kW</td><td class="num">428 km</td><td class="num">29 min</td><td class="num">4h 12m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Smart #1 Pro+</th><td class="num">66 kWh</td><td class="num">178 Wh/km</td><td class="num">150 kW</td><td class="num">371 km</td><td class="num">23 min</td><td class="num">1h 48m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tesla Model 3 Long Range</th><td class="num">75 kWh</td><td class="num">155 Wh/km</td><td class="num">250 kW</td><td class="num">484 km</td><td class="num">15 min</td><td class="num">4h 05m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tesla Model 3 RWD</th><td class="num">57.5 kWh</td><td class="num">145 Wh/km</td><td class="num">170 kW</td><td class="num">397 km</td><td class="num">17 min</td><td class="num">3h 08m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tesla Model S Long Range</th><td class="num">95 kWh</td><td class="num">178 Wh/km</td><td class="num">250 kW</td><td class="num">534 km</td><td class="num">20 min</td><td class="num">5h 11m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tesla Model Y Long Range</th><td class="num">75 kWh</td><td class="num">168 Wh/km</td><td class="num">250 kW</td><td class="num">446 km</td><td class="num">15 min</td><td class="num">4h 05m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Tesla Model Y RWD</th><td class="num">57.5 kWh</td><td class="num">158 Wh/km</td><td class="num">170 kW</td><td class="num">364 km</td><td class="num">17 min</td><td class="num">3h 08m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Toyota bZ4X FWD</th><td class="num">64 kWh</td><td class="num">175 Wh/km</td><td class="num">150 kW</td><td class="num">366 km</td><td class="num">22 min</td><td class="num">3h 29m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Volvo EX30 Extended</th><td class="num">64 kWh</td><td class="num">160 Wh/km</td><td class="num">153 kW</td><td class="num">400 km</td><td class="num">21 min</td><td class="num">3h 29m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">Volvo EX40 / XC40 ER</th><td class="num">78 kWh</td><td class="num">185 Wh/km</td><td class="num">200 kW</td><td class="num">422 km</td><td class="num">20 min</td><td class="num">4h 15m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">VW ID.3 Pro 58</th><td class="num">58 kWh</td><td class="num">165 Wh/km</td><td class="num">120 kW</td><td class="num">352 km</td><td class="num">25 min</td><td class="num">3h 10m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">VW ID.4 Pro 77</th><td class="num">77 kWh</td><td class="num">186 Wh/km</td><td class="num">135 kW</td><td class="num">414 km</td><td class="num">29 min</td><td class="num">4h 12m</td></tr><tr><th scope="row" style="text-align:left;font-weight:600;color:#fff">VW ID.7 Pro</th><td class="num">77 kWh</td><td class="num">165 Wh/km</td><td class="num">175 kW</td><td class="num">467 km</td><td class="num">23 min</td><td class="num">4h 12m</td></tr></tbody></table></div><p class="small dim mt-2">Published usable-capacity and peak-power figures, with consumption set to a realistic mixed-driving average rather than the official number. Use your own long-term average for a better answer.</p>
+
+        <h2 id="faq">Common questions</h2>
+        <details class="faq"><summary>How long does it take to charge an electric car from 10 to 80%?</summary><div class="faq-body"><p>On a 150 kW DC rapid charger, a 75 kWh battery takes about 26 minutes to go from 10% to 80%. A 50 kWh pack takes around 17 minutes and a 100 kWh pack about 34 minutes. Doubling the charger power does not halve the time, because the car tapers the power down as the battery fills.</p></div></details>
+        <details class="faq"><summary>Why does charging slow down after 80%?</summary><div class="faq-body"><p>The battery management system reduces current as cells approach full to protect them and to keep them balanced. On DC, power at 90% state of charge is typically around a quarter of the peak, and at 95% roughly a fifth. This is why charging to 80% twice is usually faster on a long trip than charging to 100% once.</p></div></details>
+        <details class="faq"><summary>How much range does an EV lose in cold weather?</summary><div class="faq-body"><p>At -10 °C expect roughly 33% higher consumption than at 20 °C, and at -20 °C roughly 44% higher. A 75 kWh car using 175 Wh/km covers about 429 km at 20 °C but only about 322 km at -10 °C. Cold costs range twice over: the chemistry delivers less and the cabin has to be heated from the same battery.</p></div></details>
+        <details class="faq"><summary>How long does it take to charge an EV on a home wallbox?</summary><div class="faq-body"><p>On a 7.4 kW single-phase wallbox, charging a 75 kWh battery from 20% to 80% takes about 6 hours. On an 11 kW three-phase wallbox the same charge takes about 4 hours. On a standard household socket at 2.3 kW it takes around 19.5 hours, which is why a wallbox matters for larger packs.</p></div></details>
+        <details class="faq"><summary>How much does it cost to charge an electric car per 100 km?</summary><div class="faq-body"><p>At 175 Wh/km, electricity at 0.20 per kWh costs 3.50 per 100 km, and at 0.50 per kWh it costs 8.75 per 100 km. Multiply your consumption in Wh/km by the price per kWh and divide by 10 to get the cost per 100 km in your own currency.</p></div></details>
+        <details class="faq"><summary>Does a 350 kW charger charge my car faster than a 150 kW one?</summary><div class="faq-body"><p>Only if your car can accept more than 150 kW. Charging power is the lower of what the charge point supplies and what the car will take at that state of charge. A car peaking at 100 kW gains nothing from a 350 kW post, and above 80% almost every car is slow regardless of what it is plugged into.</p></div></details>
+        <details class="faq"><summary>How much energy is lost when charging an EV?</summary><div class="faq-body"><p>Roughly 5% on DC rapid charging and around 11% on AC charging. Those losses happen between the meter and the battery, so you pay for them but never see them in the pack. On AC that means about 11% more on your bill than the energy the battery actually gained.</p></div></details>
+
+        <div class="card pad-lg text-center mt-5">
+          <h3 class="mb-2">These are averages. Yours will differ.</h3>
+          <p class="mb-4">Put your own car, prices and conditions in and get the number that applies to you.</p>
+          <a href="calculator.html" class="btn accent">Open the calculator</a>
+        </div>
+
+        <p class="small dim mt-4">Tables generated from the Wattrix calculation engine. Reuse them freely with a link back to <a class="link" href="https://wattrix.app/reference.html">wattrix.app/reference.html</a>.</p>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
+          <p>The EV charging matrix. Energy, time and cost for any electric car, worked out in your browser and never sent anywhere.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Tools</h4>
+          <a href="calculator.html#trip">Trip planner</a>
+          <a href="calculator.html#charge">Charging session</a>
+          <a href="calculator.html#range">Range today</a>
+          <a href="calculator.html#compare">EV vs fuel</a>
+        </div>
+        <div class="foot-col">
+          <h4>Learn</h4>
+          <a href="use-cases.html">Use cases</a>
+          <a href="reference.html">Charging time tables</a>
+          <a href="about.html#how">How the maths works</a>
+          <a href="about.html#accuracy">Accuracy and limits</a>
+          <a href="calculator.html?tour=1">Guided tour</a>
+        </div>
+        <div class="foot-col">
+          <h4>Privacy</h4>
+          <a href="about.html#privacy">Privacy &amp; data</a>
+          <button type="button" data-cookie-prefs>Cookie preferences</button>
+          <a href="mailto:support@fhatal.com">Contact support</a>
+          <a href="https://fhatal.com" rel="noopener">FHATAL</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; <span data-year>2026</span> <a href="https://fhatal.com" rel="noopener">FHATAL</a>. Wattrix is free to use.</span>
+        <span class="dim">Estimates only &middot; always leave yourself a reserve</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/calculator.js"></script>
+
+</body>
+
+</html>

@@ -3,21 +3,31 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Wattrix - EV charging, range and cost calculator</title>
+  <title>Wattrix - EV charging time, range and cost calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#050507" />
   <meta name="description" content="Work out EV charging time, trip energy, real winter range and running costs against petrol. Four tools, 48 car presets, no account, everything calculated in your browser." />
   <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://wattrix.app/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="author" content="FHATAL" />
+  <meta name="publisher" content="FHATAL" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Wattrix" />
-  <meta property="og:title" content="Wattrix - EV charging, range and cost calculator" />
+  <meta property="og:locale" content="en" />
+  <meta property="og:title" content="Wattrix - EV charging time, range and cost calculator" />
   <meta property="og:description" content="Work out EV charging time, trip energy, real winter range and running costs against petrol. Four tools, 48 car presets, no account, everything calculated in your browser." />
   <meta property="og:url" content="https://wattrix.app/" />
+  <meta property="og:image" content="https://wattrix.app/assets/og/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Wattrix - know what the drive really costs" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Wattrix - EV charging, range and cost calculator" />
+  <meta name="twitter:title" content="Wattrix - EV charging time, range and cost calculator" />
   <meta name="twitter:description" content="Work out EV charging time, trip energy, real winter range and running costs against petrol. Four tools, 48 car presets, no account, everything calculated in your browser." />
+  <meta name="twitter:image" content="https://wattrix.app/assets/og/og-home.png" />
+  <meta name="twitter:image:alt" content="Wattrix - know what the drive really costs" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,15 +40,106 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Wattrix",
-    "url": "https://wattrix.app/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Any",
-    "description": "EV charging and trip calculator. Energy, time, charging stops and cost for any electric car, calculated locally in the browser.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-    "featureList": ["Trip planner with charging stops", "Charging session times with taper curve", "Real-world range by temperature", "EV versus petrol and diesel running costs"],
-    "author": { "@type": "Organization", "name": "FHATAL", "url": "https://fhatal.com" }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://wattrix.app/#org",
+        "name": "FHATAL",
+        "url": "https://fhatal.com",
+        "description": "Finnish software company building web software, SaaS and digital products.",
+        "email": "support@fhatal.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wattrix.app/#site",
+        "name": "Wattrix",
+        "alternateName": "Wattrix EV calculator",
+        "url": "https://wattrix.app/",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://wattrix.app/#app",
+        "name": "Wattrix",
+        "url": "https://wattrix.app/",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "EV charging and trip calculator",
+        "operatingSystem": "Any browser",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Calculates EV charging time, trip energy, charging stops, real-world range and running costs. Runs entirely in the browser with no account and no server.",
+        "featureList": [
+          "Trip planner that works out how many charging stops a journey needs",
+          "Charging session times modelled on a real DC taper curve",
+          "Real-world range adjusted for temperature, speed, load and tyres",
+          "EV versus petrol and diesel running cost comparison",
+          "48 electric car presets and 10 charge point presets",
+          "Works offline after the first visit"
+        ],
+        "publisher": {
+          "@id": "https://wattrix.app/#org"
+        },
+        "creator": {
+          "@id": "https://wattrix.app/#org"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://wattrix.app/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need an account to use Wattrix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Wattrix has no accounts and no server-side component at all. The page you load is the whole product, and every calculation runs in your own browser."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How accurate is an EV charging time calculator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Good enough to plan with, not to bet your last 5% on. Charging time depends on cell temperature, how busy the charging site is and the state of health of the pack. Wattrix models the taper curve rather than dividing kWh by kW, which puts it far closer than a linear estimate, but you should always keep the reserve you set."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Wattrix work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. A service worker caches the pages and scripts on your first visit, so Wattrix opens and calculates with no connection. That matters because underground car parks and rural charging stops are exactly where you need it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which electric cars does Wattrix support?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every one. There are 48 built-in presets for common models to save typing, but any EV works if you know the usable battery size in kWh and roughly what it consumes per kilometre."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -62,6 +163,7 @@
         <a href="index.html" class="active" aria-current="page">Home</a>
         <a href="calculator.html">Calculator</a>
         <a href="use-cases.html">Use cases</a>
+        <a href="reference.html">Reference</a>
         <a href="about.html">About</a>
       </div>
       <div class="nav-cta">
@@ -340,6 +442,7 @@
         <div class="foot-col">
           <h4>Learn</h4>
           <a href="use-cases.html">Use cases</a>
+          <a href="reference.html">Charging time tables</a>
           <a href="about.html#how">How the maths works</a>
           <a href="about.html#accuracy">Accuracy and limits</a>
           <a href="calculator.html?tour=1">Guided tour</a>
