@@ -3,202 +3,197 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Wattrix • About & FAQ</title>
+  <title>About Wattrix - how the EV maths works, and our privacy stance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#050505" />
+  <meta name="theme-color" content="#050507" />
+  <meta name="description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://wattrix.app/about.html" />
 
-  <!-- Fonts -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wattrix" />
+  <meta property="og:title" content="About Wattrix - how the EV maths works, and our privacy stance" />
+  <meta property="og:description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
+  <meta property="og:url" content="https://wattrix.app/about.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Wattrix - how the EV maths works, and our privacy stance" />
+  <meta name="twitter:description" content="How Wattrix models consumption, charging tapers, stops and cost, where the estimates stop being reliable, and exactly what is stored on your device." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237559ff'/%3E%3Cstop offset='1' stop-color='%2338fbd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='24,4 44,28 32,28 48,60 20,32 34,32' fill='url(%23g)'/%3E%3C/svg%3E">
-
-  <style>
-    .content-block {
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-      font-size: 17px;
-    }
-
-    .content-block h2 {
-      color: #fff;
-      margin-top: 48px;
-      margin-bottom: 24px;
-      font-size: 32px;
-    }
-
-    .content-block p {
-      margin-bottom: 24px;
-    }
-
-    .content-block ul {
-      list-style: disc;
-      padding-left: 24px;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .content-block li {
-      margin-bottom: 8px;
-    }
-
-    details {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: var(--r-md);
-      padding: 16px;
-      margin-bottom: 12px;
-      transition: var(--trans-fast);
-    }
-
-    details[open] {
-      border-color: rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    summary::after {
-      content: '+';
-      font-size: 20px;
-      font-weight: 300;
-    }
-
-    details[open] summary::after {
-      content: '−';
-    }
-
-    details p {
-      margin: 16px 0 0 0;
-      font-size: 15px;
-      color: var(--text-muted);
-    }
-  </style>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237559ff'/%3E%3Cstop offset='1' stop-color='%2338fbd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='24,4 44,28 32,28 48,60 20,32 34,32' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Do you track me?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you say yes. Analytics is off until you accept it in the cookie banner, and rejecting means the Google Analytics script is never loaded at all - not loaded-but-muted. You can change your mind from the footer on any page, and withdrawing consent clears the analytics cookies straight away." } },
+      { "@type": "Question", "name": "What is stored on my device?", "acceptedAnswer": { "@type": "Answer", "text": "Three things, all in local storage: your calculator inputs so the page comes back the way you left it, any scenarios you save by name, and your cookie choice. Clearing your browser data for this site removes all of it. There is no server copy because there is no server." } },
+      { "@type": "Question", "name": "Does it work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A service worker caches the pages and scripts on your first visit, so Wattrix opens and calculates with no connection. That is deliberate: underground car parks and rural charging stops are exactly where you want it." } },
+      { "@type": "Question", "name": "Why does my car charge slower than this says?", "acceptedAnswer": { "@type": "Answer", "text": "Cold cells, a shared charging cabinet, a high starting state of charge, or a car that is throttling to protect the pack. The taper curve here is a good generic model, not your specific car on that specific day. Treat it as a planning figure." } },
+      { "@type": "Question", "name": "Where do the car presets come from?", "acceptedAnswer": { "@type": "Answer", "text": "Published usable-capacity and peak-power figures, with consumption set to a realistic mixed-driving average rather than the optimistic official number. They are a starting point - your own long-term average is always more accurate, so override it." } },
+      { "@type": "Question", "name": "Can I use miles?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Distance switches between km and mi, and consumption can be entered as Wh/km, Wh/mi, kWh/100km or mi/kWh. Currency has a few common symbols and you can type any price." } },
+      { "@type": "Question", "name": "Is it really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with no account and no paywall. It is built and maintained by FHATAL as a genuinely useful tool." } },
+      { "@type": "Question", "name": "How do I report a wrong number?", "acceptedAnswer": { "@type": "Answer", "text": "Email support@fhatal.com with the car, the inputs and what you saw in reality. Corrections to the preset data are welcome and easy to apply." } }
+    ]
+  }
+  </script>
 </head>
 
 <body>
 
-  <!-- Background Grid -->
-  <div class="bg-grid"></div>
-  <div id="loader">
-    <div class="spinner"></div>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <div class="bg-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div id="loader" aria-hidden="true">
+    <div class="bolt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg></div>
+    <div class="bar"><i></i></div>
   </div>
 
-  <!-- Nav -->
   <div class="nav-wrapper">
-    <nav class="nav">
-      <a href="index.html" class="brand" aria-label="Wattrix Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#7559ff" />
-              <stop offset="1" stop-color="#38fbd0" />
-            </linearGradient>
-          </defs>
-          <polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#g1)" />
-        </svg>
-        WATTRIX
-      </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="calculator.html">Calculator</a>
-        <a href="about.html" class="active">About</a>
+        <a href="use-cases.html">Use cases</a>
+        <a href="about.html" class="active" aria-current="page">About</a>
       </div>
-      <div class="nav-cta"><a href="calculator.html" class="btn primary">Launch App</a></div>
+      <div class="nav-cta">
+        <a href="calculator.html" class="btn brand">Open calculator</a>
+      </div>
     </nav>
   </div>
 
-  <section class="hero" style="padding-bottom:var(--s-4);">
-    <div class="container">
-      <h1>About Wattrix</h1>
-      <p>The privacy-focused, fast, and free EV trip planner.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container content-block">
-
-      <h2>Why Wattrix?</h2>
-      <p>Planning an EV trip shouldn't be complicated. Most planners require accounts, sync data to the cloud, or are
-        overloaded with ads. Wattrix is different:</p>
-      <ul>
-        <li><strong>Privacy First:</strong> No accounts. No tracking pixels for the calculator. All math happens in your
-          browser.</li>
-        <li><strong>Instant:</strong> Change a value, see the result. No loading spinners or server round-trips.</li>
-        <li><strong>Universal:</strong> Works for Tesla, Hyundai, Volkswagen, Rivian—any EV where you know the battery
-          size and efficiency.</li>
-      </ul>
-
-      <h2 id="privacy">Privacy & FAQ</h2>
-
-      <details open>
-        <summary>What cookies do you use?</summary>
-        <p>Strictly necessary cookies (for security/load balancing) are always on. We optionally use Google Analytics to
-          understand site usage, but only if you click "Accept" on the banner. You can manage this anytime.</p>
-      </details>
-
-      <details>
-        <summary>Where is my data stored?</summary>
-        <p>Your calculator inputs (battery size, trip distance, etc.) are stored in your browser's
-          <code>localStorage</code>. This means if you come back to the site on the same device, your settings are
-          remembered. We do not send this data to any server.
-        </p>
-      </details>
-
-      <details>
-        <summary>Can I use this offline?</summary>
-        <p>Because the logic runs in the browser, once the page is loaded, you can actually go offline and continue
-          calculating! The app is designed to be lightweight and resilient.</p>
-      </details>
-
-      <div
-        style="margin-top:48px; padding:24px; border:1px solid rgba(255,255,255,0.1); border-radius:16px; background:rgba(255,255,255,0.02); text-align:center;">
-        <h3 style="margin-bottom:12px;">Have questions?</h3>
-        <p style="margin-bottom:24px;">For data privacy requests or feedback.</p>
-        <a href="mailto:support@fhatal.com" class="btn glow">Contact Support</a>
+  <main id="main">
+    <section class="hero compact">
+      <div class="container narrow">
+        <span class="badge">About</span>
+        <h1>Wattrix</h1>
+        <p class="lede">A calculator for the four questions every EV driver keeps asking, built so that none of the answers require an account, a connection, or trusting anyone with your journeys.</p>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section class="section">
+      <div class="container narrow prose">
 
-  <footer>
+        <h2 id="why">Why it exists</h2>
+        <p>Most EV planners want an account, a route upload and a live connection, and pay for themselves with data or ads. That is a lot of machinery for arithmetic you could do on the back of an envelope if you knew which numbers mattered.</p>
+        <p>Wattrix does the arithmetic properly and keeps it on your device. There is no backend to send anything to. The page you load is the entire product, which is also why it still works in a basement car park with no signal.</p>
+
+        <h2 id="how">How the maths works</h2>
+        <p>Four things drive every result.</p>
+
+        <h3>1. Energy for a drive</h3>
+        <p>Distance multiplied by consumption. The only interesting part is that consumption is not a constant, so Wattrix adjusts your rated figure by a multiplier built from temperature, speed, load and tyres:</p>
+        <ul>
+          <li><strong>Temperature</strong> - below 20 &deg;C, roughly 1.1% added per degree. At -10 &deg;C that is about a third more energy.</li>
+          <li><strong>Speed</strong> - city 0.90&times;, mixed 1.00&times;, 100 km/h 1.16&times;, 120 km/h 1.28&times;, 140 km/h 1.45&times;.</li>
+          <li><strong>Load</strong> - full car 1.08&times;, roof box 1.16&times;, trailer or caravan 1.60&times;.</li>
+          <li><strong>Winter tyres</strong> - 1.05&times;.</li>
+        </ul>
+        <p>They multiply together, which is why a cold motorway run with a roof box is so much worse than any single factor suggests.</p>
+
+        <h3>2. Charging time</h3>
+        <p>Charging power falls as the battery fills, so dividing kWh by kW gives an answer that is wrong in the direction that hurts. Wattrix walks the session in half-percent steps and, at each step, takes the lower of what the charge point can supply and what the car will accept at that state of charge. On DC that acceptance follows a taper curve: flat to about 35%, easing off through the middle, and down to a fraction of peak past 85%. Below 10 &deg;C the DC curve is derated further, because a cold pack genuinely will not take the power.</p>
+        <p>AC is simpler. Your onboard charger is the ceiling until the BMS starts balancing near the top.</p>
+
+        <h3>3. Charging stops</h3>
+        <p>The trip planner works out what the drive needs, subtracts what is in the pack above your reserve, and fills the gap in realistic windows - arrive near your reserve, leave at the cap you set, default 80%. Each of those windows is timed with the same taper model, then added up.</p>
+
+        <h3>4. Cost</h3>
+        <p>Energy at the meter, not energy in the battery. Charging losses of roughly 5% on DC and 11% on AC sit between the two, and you pay for them, so Wattrix bills them.</p>
+
+        <h2 id="accuracy">Accuracy, and where it ends</h2>
+        <p>These are planning estimates. They are built on defensible models rather than round numbers, but a calculator cannot know about the headwind, the roadworks, the 600 m climb, the charger that is sharing a cabinet with the car next to you, or eight years of battery degradation.</p>
+        <ul>
+          <li>Consumption is the biggest source of error. Use your own long-term average and the rest gets much better.</li>
+          <li>Elevation is not modelled. A mountain crossing will cost more than this says, though you get some of it back coming down.</li>
+          <li>Charging curves are generic. Your car has its own, and it changes with temperature and state of health.</li>
+          <li>Battery degradation is not modelled. Reduce the usable capacity yourself on an older car.</li>
+        </ul>
+        <p><strong>Always keep the reserve you set.</strong> The tool is designed around that reserve for a reason.</p>
+
+        <h2 id="privacy">Privacy and cookies</h2>
+        <p>There is no account, no analytics of your inputs, and no server that could receive them. The calculator does not make a single network request while you use it.</p>
+        <ul>
+          <li><strong>Strictly necessary</strong> - local storage holding your inputs, saved scenarios and your cookie choice. No third party sees any of it.</li>
+          <li><strong>Analytics</strong> - optional Google Analytics 4 with IP anonymisation, purely page views. Off unless you accept it, and the script is never loaded if you decline.</li>
+          <li><strong>Advertising</strong> - off, and there are no ad units on the site. The category exists so the control is honest if that ever changes.</li>
+        </ul>
+        <p>Your choice is stored for 180 days and then Wattrix asks again. Withdrawing analytics consent deletes the analytics cookies immediately.</p>
+        <p><button type="button" class="btn glow" data-cookie-prefs>Open cookie preferences</button></p>
+
+        <h2 id="faq">Frequently asked</h2>
+        <details class="faq"><summary>Do you track me?</summary><div class="faq-body"><p>Only if you say yes. Analytics is off until you accept it in the cookie banner, and rejecting means the Google Analytics script is never loaded at all - not loaded-but-muted. You can change your mind from the footer on any page, and withdrawing consent clears the analytics cookies straight away.</p></div></details>
+        <details class="faq"><summary>What is stored on my device?</summary><div class="faq-body"><p>Three things, all in local storage: your calculator inputs so the page comes back the way you left it, any scenarios you save by name, and your cookie choice. Clearing your browser data for this site removes all of it. There is no server copy because there is no server.</p></div></details>
+        <details class="faq"><summary>Does it work offline?</summary><div class="faq-body"><p>Yes. A service worker caches the pages and scripts on your first visit, so Wattrix opens and calculates with no connection. That is deliberate: underground car parks and rural charging stops are exactly where you want it.</p></div></details>
+        <details class="faq"><summary>Why does my car charge slower than this says?</summary><div class="faq-body"><p>Cold cells, a shared charging cabinet, a high starting state of charge, or a car that is throttling to protect the pack. The taper curve here is a good generic model, not your specific car on that specific day. Treat it as a planning figure.</p></div></details>
+        <details class="faq"><summary>Where do the car presets come from?</summary><div class="faq-body"><p>Published usable-capacity and peak-power figures, with consumption set to a realistic mixed-driving average rather than the optimistic official number. They are a starting point - your own long-term average is always more accurate, so override it.</p></div></details>
+        <details class="faq"><summary>Can I use miles?</summary><div class="faq-body"><p>Yes. Distance switches between km and mi, and consumption can be entered as Wh/km, Wh/mi, kWh/100km or mi/kWh. Currency has a few common symbols and you can type any price.</p></div></details>
+        <details class="faq"><summary>Is it really free?</summary><div class="faq-body"><p>Yes, with no account and no paywall. It is built and maintained by FHATAL as a genuinely useful tool.</p></div></details>
+        <details class="faq"><summary>How do I report a wrong number?</summary><div class="faq-body"><p>Email support@fhatal.com with the car, the inputs and what you saw in reality. Corrections to the preset data are welcome and easy to apply.</p></div></details>
+
+        <h2 id="who">Who builds it</h2>
+        <p>Wattrix is made by <a class="link" href="https://fhatal.com" rel="noopener">FHATAL</a>, a small Finnish software company. We build web software, SaaS and digital products, and Wattrix is the tool we wanted for our own cars.</p>
+
+        <div class="card pad-lg text-center mt-5">
+          <h3 class="mb-2">Found a number that looks wrong?</h3>
+          <p class="mb-4">Tell us the car, the inputs and what actually happened. Corrections are quick to make.</p>
+          <a href="mailto:support@fhatal.com" class="btn glow">Email support@fhatal.com</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
     <div class="container">
-      <p>&copy; 2026 <a href="https://fhatal.com">Fhatal Studios</a>. All rights reserved.</p>
-      <div style="margin-top:12px;">
-        <button id="footerManageCookies" class="btn" style="padding:4px 12px; font-size:12px;">Manage Cookies</button>
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
+          <p>The EV charging matrix. Energy, time and cost for any electric car, worked out in your browser and never sent anywhere.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Tools</h4>
+          <a href="calculator.html#trip">Trip planner</a>
+          <a href="calculator.html#charge">Charging session</a>
+          <a href="calculator.html#range">Range today</a>
+          <a href="calculator.html#compare">EV vs fuel</a>
+        </div>
+        <div class="foot-col">
+          <h4>Learn</h4>
+          <a href="use-cases.html">Use cases</a>
+          <a href="about.html#how">How the maths works</a>
+          <a href="about.html#accuracy">Accuracy and limits</a>
+          <a href="calculator.html?tour=1">Guided tour</a>
+        </div>
+        <div class="foot-col">
+          <h4>Privacy</h4>
+          <a href="about.html#privacy">Privacy &amp; data</a>
+          <button type="button" data-cookie-prefs>Cookie preferences</button>
+          <a href="mailto:support@fhatal.com">Contact support</a>
+          <a href="https://fhatal.com" rel="noopener">FHATAL</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; <span data-year>2026</span> <a href="https://fhatal.com" rel="noopener">FHATAL</a>. Wattrix is free to use.</span>
+        <span class="dim">Estimates only &middot; always leave yourself a reserve</span>
       </div>
     </div>
   </footer>
 
-  <!-- Cookie Banner & JS -->
-  <div id="cookieBanner" class="cookie-banner hidden">
-    <div style="flex:1">
-      <strong style="color:#fff; display:block; margin-bottom:4px;">We value your privacy</strong>
-      <p style="font-size:14px; line-height:1.4;">We use cookies for analytics to improve the user experience. Essential
-        cookies for functionality are always on. <a href="about.html#privacy" style="text-decoration:underline;">Learn
-          more</a>.</p>
-    </div>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button id="cb-reject" class="btn">Reject Optional</button>
-      <button id="cb-accept" class="btn primary">Accept All</button>
-    </div>
-  </div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/calculator.js"></script>
 
-  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

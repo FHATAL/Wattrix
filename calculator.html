@@ -3,241 +3,448 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Wattrix • Calculator</title>
+  <title>Wattrix calculator - EV trip, charging, range and cost</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#050505" />
+  <meta name="theme-color" content="#050507" />
+  <meta name="description" content="Plan an EV trip with charging stops, time a charging session with a real taper curve, check today's range, and compare running costs against petrol or diesel." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://wattrix.app/calculator.html" />
 
-  <!-- Fonts -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Wattrix" />
+  <meta property="og:title" content="Wattrix calculator - EV trip, charging, range and cost" />
+  <meta property="og:description" content="Plan an EV trip with charging stops, time a charging session with a real taper curve, check today's range, and compare running costs against petrol or diesel." />
+  <meta property="og:url" content="https://wattrix.app/calculator.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Wattrix calculator - EV trip, charging, range and cost" />
+  <meta name="twitter:description" content="Plan an EV trip with charging stops, time a charging session with a real taper curve, check today's range, and compare running costs against petrol or diesel." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237559ff'/%3E%3Cstop offset='1' stop-color='%2338fbd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='24,4 44,28 32,28 48,60 20,32 34,32' fill='url(%23g)'/%3E%3C/svg%3E">
-
-  <style>
-    /* Page Specific Overrides */
-    .breakdown-list {
-      margin-top: 20px;
-      text-align: left;
-    }
-
-    .breakdown-list li {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .breakdown-list li span {
-      color: #fff;
-      font-weight: 500;
-    }
-
-    .breakdown-list .group-header {
-      color: var(--color-3);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 16px;
-      border-bottom: none;
-      font-weight: 700;
-    }
-
-    .breakdown-list .mono {
-      font-family: var(--font-mono);
-    }
-
-    .text-ok {
-      color: var(--color-2) !important;
-    }
-
-    .text-warn {
-      color: #f59e0b !important;
-    }
-
-    .text-danger {
-      color: #ef4444 !important;
-    }
-
-    .kpi-val.text-warn {
-      color: #f59e0b;
-    }
-
-    .kpi-val.text-ok {
-      color: #fff;
-    }
-  </style>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237559ff'/%3E%3Cstop offset='1' stop-color='%2338fbd0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='24,4 44,28 32,28 48,60 20,32 34,32' fill='url(%23g)'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 
 <body>
 
-  <div class="bg-grid"></div>
-  <div id="loader">
-    <div class="spinner"></div>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <div class="bg-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <div id="loader" aria-hidden="true">
+    <div class="bolt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg></div>
+    <div class="bar"><i></i></div>
   </div>
 
-  <!-- Nav -->
   <div class="nav-wrapper">
-    <nav class="nav">
-      <a href="index.html" class="brand" aria-label="Wattrix Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#7559ff" />
-              <stop offset="1" stop-color="#38fbd0" />
-            </linearGradient>
-          </defs>
-          <polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#g1)" />
-        </svg>
-        WATTRIX
-      </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="calculator.html" class="active">Calculator</a>
+        <a href="calculator.html" class="active" aria-current="page">Calculator</a>
+        <a href="use-cases.html">Use cases</a>
         <a href="about.html">About</a>
       </div>
-      <div class="nav-cta"><a href="about.html#privacy" class="btn">FAQ</a></div>
+      <div class="nav-cta">
+        <a href="calculator.html?tour=1" class="btn brand">Take the tour</a>
+      </div>
     </nav>
   </div>
 
-  <section class="section" style="padding-top:140px;">
+  <main id="main">
+    <section class="section" style="padding-top:130px" id="calcRoot">
+      <div class="container wide">
+
+        <div class="d-flex items-center justify-between flex-wrap gap-3 mb-4">
+          <div>
+            <span class="eyebrow">Local-first calculator</span>
+            <h1 style="font-size:clamp(28px,4vw,40px)">Wattrix calculator</h1>
+            <p class="mt-2" style="max-width:640px">Four tools over one car profile. Everything recalculates as you type, and nothing leaves this browser.</p>
+          </div>
+          <div class="d-flex gap-2 flex-wrap no-print">
+            <button type="button" class="btn" id="btnTour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Guided tour</button>
+            <button type="button" class="btn" id="btnReset">Reset</button>
+          </div>
+        </div>
+
+        <div class="calc-layout">
+
+          <!-- ============ INPUTS ============ -->
+          <div>
+
+            <div class="panel" id="vehiclePanel">
+              <div class="panel-title">
+                <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5"/></svg>Your car</h2>
+                <button type="button" class="btn sm" id="pickVehicle">Choose a model</button>
+              </div>
+              <p class="small dim mb-3">Loaded: <strong id="vehicleName" style="color:#fff">Custom vehicle</strong></p>
+
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="cap">Usable battery (kWh)</label>
+                  <input id="cap" type="number" step="0.1" min="1" max="400" inputmode="decimal">
+                  <div class="err" data-err="cap"></div>
+                  <div class="hint">Usable, not gross - it is normally a few kWh less.</div>
+                </div>
+                <div class="input-group">
+                  <label for="eff">Consumption</label>
+                  <div class="field">
+                    <input id="eff" type="number" step="0.1" min="1" inputmode="decimal">
+                    <select id="effUnit" aria-label="Consumption unit">
+                      <option value="whkm">Wh/km</option>
+                      <option value="whmi">Wh/mi</option>
+                      <option value="kwh100">kWh/100km</option>
+                      <option value="mikwh">mi/kWh</option>
+                    </select>
+                  </div>
+                  <div class="err" data-err="eff"></div>
+                  <div class="hint">Your own long-term average beats any spec sheet.</div>
+                </div>
+              </div>
+
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="dcMax">Peak DC charging (kW)</label>
+                  <input id="dcMax" type="number" step="1" min="1" max="500" inputmode="decimal">
+                  <div class="err" data-err="dcMax"></div>
+                </div>
+                <div class="input-group">
+                  <label for="acMax">Onboard AC charger (kW)</label>
+                  <input id="acMax" type="number" step="0.1" min="1" max="50" inputmode="decimal">
+                  <div class="err" data-err="acMax"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="seg" id="modeTabs" role="tablist" aria-label="Calculator tool">
+                <button type="button" role="tab" data-mode="trip" aria-selected="true">Trip</button>
+                <button type="button" role="tab" data-mode="charge" aria-selected="false">Charge</button>
+                <button type="button" role="tab" data-mode="range" aria-selected="false">Range</button>
+                <button type="button" role="tab" data-mode="compare" aria-selected="false">EV vs fuel</button>
+              </div>
+              <input type="hidden" id="mode" value="trip">
+            </div>
+
+            <!-- TRIP -->
+            <div class="panel" id="tripPanel" data-modes="trip">
+              <div class="panel-title"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>The journey</h3></div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="dist">Distance</label>
+                  <div class="field">
+                    <input id="dist" type="number" step="1" min="0" inputmode="decimal">
+                    <select id="distUnit" aria-label="Distance unit">
+                      <option value="km">km</option>
+                      <option value="mi">mi</option>
+                    </select>
+                  </div>
+                  <div class="err" data-err="dist"></div>
+                </div>
+                <div class="input-group">
+                  <label for="stopTop">Charge each stop to (%)</label>
+                  <input id="stopTop" type="number" step="5" min="20" max="100" inputmode="decimal">
+                  <div class="hint">80% is the sweet spot on DC.</div>
+                </div>
+              </div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="socStart">Starting charge (%)</label>
+                  <input id="socStart" type="number" step="1" min="0" max="100" inputmode="decimal">
+                </div>
+                <div class="input-group">
+                  <label for="socReserve">Reserve you keep (%)</label>
+                  <input id="socReserve" type="number" step="1" min="0" max="100" inputmode="decimal">
+                  <div class="err" data-err="socReserve"></div>
+                </div>
+              </div>
+              <div class="chips mt-2">
+                <button type="button" class="chip" data-set="dist=50">50 km</button>
+                <button type="button" class="chip" data-set="dist=150">150 km</button>
+                <button type="button" class="chip" data-set="dist=300">300 km</button>
+                <button type="button" class="chip" data-set="dist=600">600 km</button>
+                <button type="button" class="chip" data-set="dist=1000">1000 km</button>
+              </div>
+            </div>
+
+            <!-- CHARGE -->
+            <div class="panel" id="chargePanel" data-modes="charge" hidden>
+              <div class="panel-title"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 17v5"/></svg>The session</h3></div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="cSocFrom">Plug in at (%)</label>
+                  <input id="cSocFrom" type="number" step="1" min="0" max="100" inputmode="decimal">
+                </div>
+                <div class="input-group">
+                  <label for="cSocTo">Unplug at (%)</label>
+                  <input id="cSocTo" type="number" step="1" min="0" max="100" inputmode="decimal">
+                  <div class="err" data-err="cSocTo"></div>
+                </div>
+              </div>
+              <div class="chips">
+                <button type="button" class="chip" data-set="cSocFrom=10;cSocTo=80">10 to 80%</button>
+                <button type="button" class="chip" data-set="cSocFrom=20;cSocTo=80">20 to 80%</button>
+                <button type="button" class="chip" data-set="cSocFrom=20;cSocTo=100">20 to 100%</button>
+                <button type="button" class="chip" data-set="cSocFrom=80;cSocTo=100">The slow last bit</button>
+                <button type="button" class="chip" data-set="cSocFrom=30;cSocTo=60">Quick top-up</button>
+              </div>
+            </div>
+
+            <!-- RANGE -->
+            <div class="panel" id="rangePanel" data-modes="range" hidden>
+              <div class="panel-title"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M13.4 10.6 19 5"/><path d="M20.5 17a10 10 0 1 0-17 0"/></svg>Where you are now</h3></div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="rSoc">Current charge (%)</label>
+                  <input id="rSoc" type="number" step="1" min="0" max="100" inputmode="decimal">
+                </div>
+                <div class="input-group">
+                  <label for="rReserve">Reserve you keep (%)</label>
+                  <input id="rReserve" type="number" step="1" min="0" max="100" inputmode="decimal">
+                </div>
+              </div>
+              <div class="chips">
+                <button type="button" class="chip" data-set="rSoc=100">Full</button>
+                <button type="button" class="chip" data-set="rSoc=80">80%</button>
+                <button type="button" class="chip" data-set="rSoc=50">Half</button>
+                <button type="button" class="chip" data-set="rSoc=20">20%</button>
+              </div>
+            </div>
+
+            <!-- COMPARE -->
+            <div class="panel" id="comparePanel" data-modes="compare" hidden>
+              <div class="panel-title"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Against a combustion car</h3></div>
+              <div class="input-group">
+                <label for="annualKm">Distance per year</label>
+                <input id="annualKm" type="number" step="500" min="0" inputmode="decimal">
+                <div class="err" data-err="annualKm"></div>
+              </div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="homePrice">Home electricity / kWh</label>
+                  <input id="homePrice" type="number" step="0.01" min="0" inputmode="decimal">
+                </div>
+                <div class="input-group">
+                  <label for="pubPrice">Public charging / kWh</label>
+                  <input id="pubPrice" type="number" step="0.01" min="0" inputmode="decimal">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="pubShare">Share charged in public <span class="mono dim" data-mirror="pubShare">25%</span></label>
+                <div class="range-row">
+                  <input id="pubShare" type="range" min="0" max="100" step="5">
+                </div>
+              </div>
+              <hr>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="fuelL100">Fuel use (L/100 km)</label>
+                  <input id="fuelL100" type="number" step="0.1" min="0.1" max="60" inputmode="decimal">
+                  <div class="err" data-err="fuelL100"></div>
+                </div>
+                <div class="input-group">
+                  <label for="fuelPrice">Fuel price / litre</label>
+                  <input id="fuelPrice" type="number" step="0.01" min="0" inputmode="decimal">
+                  <div class="err" data-err="fuelPrice"></div>
+                </div>
+              </div>
+              <input type="hidden" id="fuelCo2" value="2.31">
+              <div class="chips">
+                <button type="button" class="chip" data-set="fuelL100=7.0;fuelCo2=2.31">Petrol 7.0</button>
+                <button type="button" class="chip" data-set="fuelL100=5.8;fuelCo2=2.64">Diesel 5.8</button>
+                <button type="button" class="chip" data-set="fuelL100=4.8;fuelCo2=2.31">Hybrid 4.8</button>
+                <button type="button" class="chip" data-set="fuelL100=9.5;fuelCo2=2.31">Large SUV 9.5</button>
+              </div>
+            </div>
+
+            <!-- CHARGER + PRICE -->
+            <div class="panel" id="chargerPanel" data-modes="trip charge range">
+              <div class="panel-title">
+                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M6 8h12v3a6 6 0 0 1-6 6 6 6 0 0 1-6-6z"/><path d="M12 17v5"/></svg>Charging and price</h3>
+                <button type="button" class="btn sm" id="pickCharger">Presets</button>
+              </div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="chargerKw">Charge point power (kW)</label>
+                  <input id="chargerKw" type="number" step="0.1" min="0.5" max="500" inputmode="decimal">
+                  <div class="err" data-err="chargerKw"></div>
+                </div>
+                <div class="input-group">
+                  <label for="chargerType">Type</label>
+                  <select id="chargerType">
+                    <option value="dc">DC rapid</option>
+                    <option value="ac">AC / wallbox</option>
+                  </select>
+                </div>
+              </div>
+              <div class="hint mb-3" id="chargerHint"></div>
+              <div class="two-col">
+                <div class="input-group">
+                  <label for="price">Price per kWh</label>
+                  <div class="field">
+                    <input id="price" type="number" step="0.01" min="0" max="10" inputmode="decimal">
+                    <select id="currency" aria-label="Currency">
+                      <option>&euro;</option>
+                      <option>$</option>
+                      <option>&pound;</option>
+                      <option>kr</option>
+                      <option>z&#322;</option>
+                    </select>
+                  </div>
+                  <div class="err" data-err="price"></div>
+                </div>
+                <div class="input-group">
+                  <label for="lossPct">Charging losses (%)</label>
+                  <input id="lossPct" type="number" step="1" min="0" max="40" inputmode="decimal">
+                  <div class="hint">Roughly 5% on DC, 11% on AC.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONDITIONS -->
+            <div class="panel" id="conditionsPanel" data-modes="trip range compare">
+              <div class="panel-title">
+                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>Real-world conditions</h3>
+                <button type="button" class="collapse-btn" aria-expanded="true" aria-controls="conditionsBody">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><span>Hide</span>
+                </button>
+              </div>
+              <div class="collapse-body" id="conditionsBody">
+                <div class="input-group">
+                  <label for="tempC">Outside temperature <span class="mono dim" data-mirror="tempC">15&deg;C</span></label>
+                  <div class="range-row">
+                    <input id="tempC" type="range" min="-25" max="40" step="1">
+                  </div>
+                  <div class="hint">Cold costs range twice over: the pack holds less and the cabin needs heating.</div>
+                </div>
+                <div class="two-col">
+                  <div class="input-group">
+                    <label for="profile">How you are driving</label>
+                    <select id="profile">
+                      <option value="city">City, mostly slow</option>
+                      <option value="mixed">Mixed roads</option>
+                      <option value="road">Country roads</option>
+                      <option value="mw100">Motorway 100 km/h</option>
+                      <option value="mw120">Motorway 120 km/h</option>
+                      <option value="mw140">Motorway 140 km/h</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="extraLoad">What you are carrying</label>
+                    <select id="extraLoad">
+                      <option value="none">Just the usual</option>
+                      <option value="load">Full car and luggage</option>
+                      <option value="roof">Roof box or bikes</option>
+                      <option value="trailer">Trailer or caravan</option>
+                    </select>
+                  </div>
+                </div>
+                <label class="switch" style="padding-bottom:0">
+                  <span class="sw-txt"><strong>Winter tyres</strong><span>Adds about 5% to consumption.</span></span>
+                  <input type="checkbox" id="winterTyres" style="width:20px;height:20px;flex:none">
+                </label>
+              </div>
+            </div>
+
+            <!-- SAVED -->
+            <div class="panel no-print">
+              <div class="panel-title">
+                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Saved scenarios</h3>
+                <button type="button" class="btn sm" id="btnSaveScenario">Save current</button>
+              </div>
+              <div class="saved-list" id="savedList"></div>
+            </div>
+
+          </div>
+
+          <!-- ============ RESULTS ============ -->
+          <div class="results-card" id="resultsCard">
+            <div class="panel-title">
+              <h2 id="resultsTitle">Trip result</h2>
+              <span class="tag">live</span>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi-box"><div class="kpi-val" id="kpi1">--</div><div class="kpi-label">Energy</div></div>
+              <div class="kpi-box"><div class="kpi-val" id="kpi2">--</div><div class="kpi-label">Time</div></div>
+              <div class="kpi-box"><div class="kpi-val" id="kpi3">--</div><div class="kpi-label">Cost</div></div>
+            </div>
+
+            <div class="verdict info" id="verdict"></div>
+
+            <div class="socbar" id="socBar">
+              <div class="socbar-track">
+                <div class="socbar-fill" id="socFill"></div>
+                <div class="socbar-marks"><span id="socText"></span></div>
+              </div>
+              <div class="socbar-legend"><span id="socLeft"></span><span id="socRight"></span></div>
+            </div>
+
+            <div class="chart-box" id="chartBox" role="img" aria-label="Result chart">
+              <svg viewBox="0 0 100 46" preserveAspectRatio="none"></svg>
+              <div class="chart-legend"></div>
+            </div>
+
+            <ul class="breakdown" id="breakdown"></ul>
+
+            <div class="result-actions no-print" id="resultActions">
+              <button type="button" class="btn sm" id="btnShare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.5" x2="15.4" y2="6.5"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/></svg>Share</button>
+              <button type="button" class="btn sm" id="btnCsv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>CSV</button>
+              <button type="button" class="btn sm" id="btnPrint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print</button>
+            </div>
+            <p class="small dim mt-3">Estimates. Wind, traffic, hills, cell temperature and charger sharing all move the real number. Keep your reserve.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
     <div class="container">
-      <div class="calc-layout">
-
-        <!-- COLUMN 1: INPUTS -->
-        <div class="card">
-          <h2 style="margin-bottom:24px;">Trip Parameters</h2>
-
-          <div class="input-group">
-            <label>Usable Battery (kWh)</label>
-            <input id="usableKWh" type="number" step="0.1" placeholder="e.g. 75">
-          </div>
-
-          <div class="input-group">
-            <label>Average Efficiency</label>
-            <div class="d-flex gap-2">
-              <input id="whPerKm" type="number" placeholder="e.g. 170" style="flex:1">
-              <select id="unitDist" style="width:100px">
-                <option value="km">Wh/km</option>
-                <option value="mi">Wh/mi</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label>Trip Distance</label>
-            <div class="d-flex gap-2">
-              <input id="tripKm" type="number" placeholder="e.g. 300" style="flex:1">
-              <select id="distUnit" style="width:100px">
-                <option value="km">km</option>
-                <option value="mi">mi</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label>Electricity Price</label>
-            <div class="d-flex gap-2">
-              <input id="pricePerKWh" type="number" step="0.01" value="0.20" style="flex:1">
-              <select id="currency" style="width:80px">
-                <option>€</option>
-                <option>$</option>
-                <option>£</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label>Charger Power (kW)</label>
-            <input id="chargerPower" type="number" value="11">
-          </div>
-
-          <div style="background:rgba(255,255,255,0.03); padding:16px; border-radius:12px; margin-top:24px;">
-            <h4 style="margin-bottom:12px; font-size:14px; color:#fff;">Advanced</h4>
-
-            <div class="input-group">
-              <label>Safety Buffer (%)</label>
-              <div style="display:flex; align-items:center; gap:12px;">
-                <input id="bufferPct" type="range" min="0" max="50" value="0" step="5" style="flex:1"
-                  oninput="document.getElementById('bufVal').innerText=this.value+'%'">
-                <span id="bufVal" class="mono" style="width:40px; text-align:right;">0%</span>
-              </div>
-            </div>
-
-            <div class="d-flex gap-3">
-              <div class="input-group" style="flex:1">
-                <label>Start SoC (%)</label>
-                <input id="socFrom" type="number" value="20" min="0" max="100">
-              </div>
-              <div class="input-group" style="flex:1">
-                <label>Target SoC (%)</label>
-                <input id="socTo" type="number" value="80" min="0" max="100">
-              </div>
-            </div>
-
-            <div class="input-group">
-              <label>Planned Stop (hours)</label>
-              <input id="plannedChargeHours" type="number" step="0.5" placeholder="0">
-            </div>
-          </div>
-
-          <div style="margin-top:24px; display:flex; justify-content:space-between;">
-            <button id="resetBtn" class="btn">Reset All</button>
-            <button onclick="window.print()" class="btn">Print / PDF</button>
-          </div>
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="index.html" class="brand" aria-label="Wattrix home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7559ff"/><stop offset="1" stop-color="#38fbd0"/></linearGradient></defs><polygon points="24,4 44,28 32,28 48,60 20,32 34,32" fill="url(#wg)"/></svg>WATTRIX</a>
+          <p>The EV charging matrix. Energy, time and cost for any electric car, worked out in your browser and never sent anywhere.</p>
         </div>
-
-        <!-- Cookie Banner (Shared) -->
-        <div id="cookieBanner" class="cookie-banner hidden">
-          <div style="flex:1">
-            <strong style="color:#fff; display:block; margin-bottom:4px;">We value your privacy</strong>
-            <p style="font-size:14px; line-height:1.4;">We use cookies for analytics to improve the user experience.
-              Essential cookies for functionality are always on. <a href="about.html#privacy"
-                style="text-decoration:underline;">Learn more</a>.</p>
-          </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button id="cb-reject" class="btn">Reject Optional</button>
-            <button id="cb-accept" class="btn primary">Accept All</button>
-          </div>
+        <div class="foot-col">
+          <h4>Tools</h4>
+          <a href="calculator.html#trip">Trip planner</a>
+          <a href="calculator.html#charge">Charging session</a>
+          <a href="calculator.html#range">Range today</a>
+          <a href="calculator.html#compare">EV vs fuel</a>
         </div>
-        <!-- COLUMN 2: RESULTS (Sticky) -->
-        <div class="results-card card">
-          <h2 style="margin-bottom:24px; color:var(--color-2)">Results</h2>
-
-          <div class="kpi-grid">
-            <div class="kpi-box">
-              <div class="kpi-val" id="kpiEnergy">0</div>
-              <div class="kpi-label">Needed</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-val" id="kpiTime">0h</div>
-              <div class="kpi-label">Time</div>
-            </div>
-            <div class="kpi-box">
-              <div class="kpi-val" id="kpiCost">0</div>
-              <div class="kpi-label">Cost</div>
-            </div>
-          </div>
-
-          <ul id="breakdownList" class="breakdown-list">
-            <!-- Populated by JS -->
-          </ul>
+        <div class="foot-col">
+          <h4>Learn</h4>
+          <a href="use-cases.html">Use cases</a>
+          <a href="about.html#how">How the maths works</a>
+          <a href="about.html#accuracy">Accuracy and limits</a>
+          <a href="calculator.html?tour=1">Guided tour</a>
         </div>
-
+        <div class="foot-col">
+          <h4>Privacy</h4>
+          <a href="about.html#privacy">Privacy &amp; data</a>
+          <button type="button" data-cookie-prefs>Cookie preferences</button>
+          <a href="mailto:support@fhatal.com">Contact support</a>
+          <a href="https://fhatal.com" rel="noopener">FHATAL</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; <span data-year>2026</span> <a href="https://fhatal.com" rel="noopener">FHATAL</a>. Wattrix is free to use.</span>
+        <span class="dim">Estimates only &middot; always leave yourself a reserve</span>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Javascript -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/data.js"></script>
   <script src="assets/js/calculator.js"></script>
+  <script src="assets/js/tour.js"></script>
 </body>
 
 </html>

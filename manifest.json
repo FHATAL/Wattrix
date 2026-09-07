@@ -1,0 +1,23 @@
+{
+  "name": "Wattrix - EV charging & trip calculator",
+  "short_name": "Wattrix",
+  "description": "Energy, charging time, range and cost for any electric car. Works offline, needs no account.",
+  "start_url": "./calculator.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#050507",
+  "theme_color": "#050507",
+  "categories": ["utilities", "travel", "productivity"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Plan a trip", "url": "./calculator.html#trip" },
+    { "name": "Time a charge", "url": "./calculator.html#charge" },
+    { "name": "Range today", "url": "./calculator.html#range" },
+    { "name": "EV vs fuel", "url": "./calculator.html#compare" }
+  ]
+}

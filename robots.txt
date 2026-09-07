@@ -3,8 +3,7 @@
 User-agent: *
 Allow: /
 
-# Disallow non-public or irrelevant files
 Disallow: /CNAME
+Disallow: /sw.js
 
-# Sitemap location
 Sitemap: https://wattrix.app/sitemap.xml
