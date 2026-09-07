@@ -8,7 +8,7 @@
      assets cache first, refreshed in the background
      fonts  stale while revalidate
    =======================================================*/
-const VERSION = 'wattrix-v3.0.1';
+const VERSION = 'wattrix-v3.1.0';
 const SHELL = VERSION + '-shell';
 const RUNTIME = VERSION + '-runtime';
 
@@ -17,6 +17,7 @@ const PRECACHE = [
   './index.html',
   './calculator.html',
   './use-cases.html',
+  './reference.html',
   './about.html',
   './404.html',
   './manifest.json',
