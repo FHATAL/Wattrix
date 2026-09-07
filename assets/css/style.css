@@ -558,13 +558,17 @@ hr {
   box-shadow: 0 8px 26px -6px rgba(255, 255, 255, .45);
 }
 
-.btn.brand {
+/* Named .accent, not .brand: .brand is the nav wordmark and carries
+   margin-right:auto, which silently dragged this button out of any
+   centred flex row and restyled its font. */
+.btn.accent {
   background: var(--grad-brand);
   color: #08080c;
   border-color: transparent;
+  font-family: var(--font-body);
 }
 
-.btn.brand:hover {
+.btn.accent:hover {
   box-shadow: var(--shadow-glow);
 }
 
@@ -617,7 +621,7 @@ hr {
 }
 
 .btn.primary .ripple,
-.btn.brand .ripple {
+.btn.accent .ripple {
   background: rgba(0, 0, 0, .18);
 }
 

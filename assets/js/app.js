@@ -405,7 +405,7 @@
         '<div class="cookie-actions">' +
         '<button type="button" class="btn sm" data-cc="prefs">Customise</button>' +
         '<button type="button" class="btn sm" data-cc="reject">Reject optional</button>' +
-        '<button type="button" class="btn sm brand" data-cc="accept">Accept all</button>' +
+        '<button type="button" class="btn sm accent" data-cc="accept">Accept all</button>' +
         '</div>';
       document.body.appendChild(banner);
 
@@ -472,7 +472,7 @@
       foot.innerHTML =
         '<button type="button" class="btn" data-p="reject">Reject optional</button>' +
         '<button type="button" class="btn" data-p="save">Save choices</button>' +
-        '<button type="button" class="btn brand" data-p="accept">Accept all</button>';
+        '<button type="button" class="btn accent" data-p="accept">Accept all</button>';
 
       var m = W.modal({ title: 'Cookie preferences', body: wrap, footer: foot });
 
