@@ -35,7 +35,7 @@
       '<div class="tp-dots"></div>' +
       '<div class="tp-btns">' +
       '<button type="button" class="btn sm" data-t="prev">Back</button>' +
-      '<button type="button" class="btn sm brand" data-t="next">Next</button>' +
+      '<button type="button" class="btn sm accent" data-t="next">Next</button>' +
       '</div></div>';
 
     document.body.appendChild(overlay);
