@@ -81,6 +81,13 @@ the browser's local storage. Analytics is opt-in: if declined, the Google
 Analytics script is never loaded at all. The calculator makes no network
 requests while in use and works offline after the first visit.
 
+## App
+
+Wattrix installs as an app straight from the website, with no app store.
+On iPhone: open wattrix.app in Safari, tap Share, then Add to Home Screen.
+On Android: tap Install the app on wattrix.app, or choose Install app from
+the browser menu. The installed app opens full screen and works offline.
+
 ## Citation
 
 Tables and figures may be reused with a link back to the relevant page on

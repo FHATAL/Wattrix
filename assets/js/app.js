@@ -543,6 +543,197 @@
     });
   }
 
+  /* =========================================================
+     INSTALL (home screen app)
+     Chrome/Edge/Samsung fire beforeinstallprompt and get the
+     native dialog. iOS never does, so it gets Share-sheet steps.
+     Anything else gets menu instructions for its browser.
+     Hooks: [data-install] opens the flow, [data-install-only]
+     is hidden once running as an installed app.
+     ========================================================= */
+  var Install = (function () {
+    var KEY = 'wattrix.install.v1';
+    var deferred = null, nudge = null;
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/i.test(ua);
+    var isMobile = isIOS || isAndroid || /Mobi/i.test(ua);
+    var inApp = /FBAN|FBAV|Instagram|Line\/|LinkedInApp|Snapchat|TikTok|Twitter|; wv\)/i.test(ua);
+
+    var SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
+    var PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>';
+    var DOTS = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
+    var PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>';
+    var DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+    W.ICON.download = DOWN;
+
+    function standalone() {
+      return window.navigator.standalone === true ||
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches ||
+        window.matchMedia('(display-mode: minimal-ui)').matches;
+    }
+
+    function store(patch) {
+      var o = {};
+      try { o = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { }
+      if (patch) {
+        Object.keys(patch).forEach(function (k) { o[k] = patch[k]; });
+        try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { }
+      }
+      return o;
+    }
+
+    function refresh() {
+      var installed = standalone();
+      document.documentElement.classList.toggle('is-standalone', installed);
+      $$('[data-install-only]').forEach(function (n) { n.hidden = installed; });
+      if (installed) hideNudge();
+    }
+
+    function steps(list) {
+      return '<ol class="install-steps">' + list.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>';
+    }
+
+    function guide() {
+      var intro = '<p class="small muted mb-3">Wattrix opens full screen from its own icon, works with no signal and needs no app store. Nothing extra is downloaded beyond the site itself.</p>';
+      var body, title = 'Add Wattrix to your home screen';
+
+      if (inApp) {
+        body = '<p>This page is open inside another app, which cannot add icons to your home screen.</p>' +
+          steps([
+            'Open the menu of this app (usually ' + DOTS + ' or ' + SHARE + ').',
+            'Choose <strong>Open in browser</strong> (Safari on iPhone, Chrome on Android).',
+            'Tap <strong>Install app</strong> on wattrix.app again.'
+          ]);
+      } else if (isIOS) {
+        var safari = !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+        body = steps([
+          'Tap the <strong>Share</strong> button ' + SHARE + (safari
+            ? ' in Safari\'s toolbar (bottom of the screen on iPhone, top on iPad).'
+            : ' in the address bar.'),
+          'Scroll down and tap <strong>Add to Home Screen</strong> ' + PLUS + '.',
+          'Tap <strong>Add</strong>. Wattrix is now on your home screen.'
+        ]) + (safari ? '' : '<p class="small muted mt-3">Not seeing the option? It needs iOS 16.4 or newer in this browser. Safari always supports it.</p>');
+      } else if (isAndroid) {
+        body = steps([
+          'Open the browser menu ' + DOTS + ' (top right in Chrome, bottom in Samsung Internet).',
+          'Tap <strong>Install app</strong> or <strong>Add to Home screen</strong>.',
+          'Confirm with <strong>Install</strong>. The icon lands on your home screen.'
+        ]);
+      } else {
+        title = 'Install Wattrix';
+        body = steps([
+          'In Chrome or Edge, click the install icon ' + DOWN + ' at the right end of the address bar, or open the menu and choose <strong>Install Wattrix</strong>.',
+          'In Safari on a Mac, use <strong>File &rarr; Add to Dock</strong>.',
+          'Firefox on desktop cannot install web apps - use one of the above, or bookmark the calculator.'
+        ]) + '<p class="small muted mt-3">On your phone? Open <strong>wattrix.app</strong> there and tap <strong>Install app</strong>.</p>';
+      }
+
+      var foot = el('div');
+      foot.innerHTML = '<button type="button" class="btn accent" data-close>Got it</button>';
+      var m = W.modal({ title: title, body: intro + body, footer: foot });
+      on(foot.querySelector('[data-close]'), 'click', m.close);
+      W.track('pwa_install_guide', { platform: isIOS ? 'ios' : isAndroid ? 'android' : 'desktop', in_app: inApp });
+    }
+
+    function start() {
+      hideNudge();
+      store({ dismissed: Date.now() });
+      if (standalone()) { W.toast('Wattrix is already installed'); return; }
+      if (!deferred) { guide(); return; }
+      var p = deferred;
+      deferred = null;   // a prompt event can only be used once
+      p.prompt();
+      p.userChoice.then(function (c) {
+        W.track('pwa_install_prompt', { outcome: c && c.outcome });
+      }).catch(function () { });
+    }
+
+    /* --- one-time nudge for phones: second visit onwards, after the cookie choice --- */
+    function hideNudge() {
+      if (!nudge) return;
+      var n = nudge;
+      nudge = null;
+      n.classList.remove('show');
+      setTimeout(function () { if (n.parentNode) n.parentNode.removeChild(n); }, 450);
+    }
+
+    function maybeNudge() {
+      if (nudge || standalone() || !isMobile || inApp) return;
+      if (document.body.classList.contains('tour-active')) return;
+      var s = store();
+      if ((s.visits || 0) < 2) return;
+      if (s.dismissed && Date.now() - s.dismissed < 30 * 86400000) return;
+      if (!Consent.get()) return;   // never stack on top of the cookie banner
+
+      nudge = el('div', { class: 'install-nudge', role: 'dialog', 'aria-label': 'Install Wattrix' });
+      nudge.innerHTML =
+        '<img src="assets/icons/icon-192.png" alt="" width="44" height="44">' +
+        '<div class="in-txt"><strong>Wattrix on your home screen</strong><span>Opens full screen and works offline.</span></div>' +
+        '<button type="button" class="btn sm accent" data-in="go">Install</button>' +
+        '<button type="button" class="in-x" data-in="x" aria-label="Not now">&times;</button>';
+      document.body.appendChild(nudge);
+      on(nudge, 'click', function (e) {
+        var b = e.target.closest('[data-in]');
+        if (!b) return;
+        if (b.dataset.in === 'go') start();
+        else { store({ dismissed: Date.now() }); hideNudge(); }
+      });
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { if (nudge) nudge.classList.add('show'); });
+      });
+    }
+
+    // Bound straight away, not on boot: the event can beat DOMContentLoaded.
+    on(window, 'beforeinstallprompt', function (e) {
+      e.preventDefault();          // we show our own button instead of the mini-infobar
+      deferred = e;
+      document.documentElement.classList.add('can-install');
+    });
+
+    function init() {
+      var s = store();
+      if (!sessionStorageSeen()) store({ visits: (s.visits || 0) + 1 });
+
+      on(window, 'appinstalled', function () {
+        deferred = null;
+        hideNudge();
+        store({ installed: Date.now() });
+        W.toast('Wattrix installed - find it on your home screen');
+        W.track('pwa_installed');
+      });
+      try {
+        window.matchMedia('(display-mode: standalone)').addEventListener('change', refresh);
+      } catch (e) { }
+
+      on(document, 'click', function (e) {
+        var t = e.target.closest && e.target.closest('[data-install]');
+        if (t) { e.preventDefault(); start(); }
+      });
+      document.addEventListener('wattrix:consent', function () { setTimeout(maybeNudge, 2500); });
+
+      refresh();
+      setTimeout(maybeNudge, 4000);
+    }
+
+    // Count a visit once per browser session, not once per page view.
+    function sessionStorageSeen() {
+      try {
+        if (sessionStorage.getItem(KEY)) return true;
+        sessionStorage.setItem(KEY, '1');
+      } catch (e) { return true; }
+      return false;
+    }
+
+    return {
+      init: init, open: start, guide: guide,
+      isInstalled: standalone,
+      canPrompt: function () { return !!deferred; }
+    };
+  })();
+  W.install = Install;
+
   /* ---------- boot ---------- */
   function boot() {
     initNav();
@@ -551,6 +742,7 @@
     initRipple();
     initFooter();
     Consent.init();
+    Install.init();
     initSW();
     document.dispatchEvent(new CustomEvent('wattrix:ready'));
   }
