@@ -8,7 +8,7 @@
      assets cache first, refreshed in the background
      fonts  stale while revalidate
    =======================================================*/
-const VERSION = 'wattrix-v3.1.0';
+const VERSION = 'wattrix-v3.2.0';
 const SHELL = VERSION + '-shell';
 const RUNTIME = VERSION + '-runtime';
 
@@ -26,7 +26,9 @@ const PRECACHE = [
   './assets/js/data.js',
   './assets/js/calculator.js',
   './assets/js/tour.js',
-  './assets/js/home.js'
+  './assets/js/home.js',
+  './assets/icons/icon-192.png',
+  './assets/icons/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', (e) => {

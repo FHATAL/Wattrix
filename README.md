@@ -22,7 +22,7 @@ Four tools sharing one car profile:
 
 Plus: 48 car presets, 10 charge-point presets, km/mi and four consumption
 units, saved scenarios, shareable links, CSV export, print/PDF, a guided
-tour, and full offline support.
+tour, full offline support, and an installable home screen app (no app store).
 
 ## Why it is not just kWh divided by kW
 
@@ -78,7 +78,8 @@ assets/js/data.js        vehicle / charger / fuel reference data + taper curves
 assets/js/calculator.js  engine (exported as window.WattrixEngine) + calculator UI
 assets/js/tour.js        guided tour
 assets/js/home.js        hero mini-calculator + marquee
-assets/icons/            PWA icons
+assets/icons/            PWA icons (any, maskable, 180px apple-touch-icon)
+assets/screenshots/      install-dialog screenshots referenced by manifest.json
 assets/og/               Open Graph share images (1200x630)
 ```
 
@@ -103,6 +104,21 @@ calculator.html?mode=trip&cap=77&eff=186&dist=620&socStart=100
 
 `#trip`, `#charge`, `#range` and `#compare` select a tool. `?tour=1` runs the
 guided tour.
+
+## Install as an app
+
+Wattrix is a PWA. Every page has an **Install app** button (nav, footer and the
+`#install` section on the home page), wired up by the `Install` module in
+`assets/js/app.js`:
+
+- Chrome, Edge and Samsung Internet fire `beforeinstallprompt`; the button
+  opens the native install dialog.
+- iOS never fires it, so the button shows Share -> Add to Home Screen steps.
+  In-app browsers (Instagram, Facebook...) get told to open the page in a real
+  browser first.
+- Phones see a small one-off install nudge from their second visit, only after
+  the cookie choice is made, and not again for 30 days once dismissed.
+- Anything marked `data-install-only` is hidden when already running installed.
 
 ## Development
 
