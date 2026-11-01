@@ -1,0 +1,123 @@
+{
+  "fps": 30,
+  "scenes": {
+    "hook": {
+      "from": 0,
+      "duration": 110
+    },
+    "taper": {
+      "from": 110,
+      "duration": 140
+    },
+    "features": {
+      "from": 250,
+      "duration": 240
+    },
+    "proof": {
+      "from": 490,
+      "duration": 80
+    },
+    "cta": {
+      "from": 570,
+      "duration": 105
+    }
+  },
+  "total": 675,
+  "featureEach": 60,
+  "sfx": [
+    {
+      "t": 5,
+      "kind": "whoosh"
+    },
+    {
+      "t": 16,
+      "kind": "impact"
+    },
+    {
+      "t": 42,
+      "kind": "slash"
+    },
+    {
+      "t": 54,
+      "kind": "tick"
+    },
+    {
+      "t": 62,
+      "kind": "tick"
+    },
+    {
+      "t": 70,
+      "kind": "tick"
+    },
+    {
+      "t": 100,
+      "kind": "whoosh"
+    },
+    {
+      "t": 124,
+      "kind": "riser",
+      "len": 90
+    },
+    {
+      "t": 214,
+      "kind": "impact"
+    },
+    {
+      "t": 244,
+      "kind": "whoosh"
+    },
+    {
+      "t": 258,
+      "kind": "impact"
+    },
+    {
+      "t": 310,
+      "kind": "swoosh"
+    },
+    {
+      "t": 370,
+      "kind": "swoosh"
+    },
+    {
+      "t": 430,
+      "kind": "swoosh"
+    },
+    {
+      "t": 484,
+      "kind": "whoosh"
+    },
+    {
+      "t": 506,
+      "kind": "tick"
+    },
+    {
+      "t": 514,
+      "kind": "tick"
+    },
+    {
+      "t": 522,
+      "kind": "tick"
+    },
+    {
+      "t": 530,
+      "kind": "tick"
+    },
+    {
+      "t": 538,
+      "kind": "tick"
+    },
+    {
+      "t": 562,
+      "kind": "riser",
+      "len": 20
+    },
+    {
+      "t": 582,
+      "kind": "impact"
+    },
+    {
+      "t": 622,
+      "kind": "chime"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "wattrix-promo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "capture": "node scripts/capture.mjs",
+    "sfx": "python3 scripts/sfx.py",
+    "typecheck": "tsc --noEmit",
+    "render": "bash scripts/render-all.sh"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.539",
+    "@remotion/cli": "4.0.539",
+    "@remotion/renderer": "4.0.539",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "typescript": "^5.6.3"
+  }
+}
